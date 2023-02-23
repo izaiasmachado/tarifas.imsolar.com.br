@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px 0;
+  padding: 20px 0;
 }
 
 .Home__hero-title {
@@ -21,11 +21,11 @@
 }
 
 .Home__hero-title h1 {
-  margin: 10px 0;
+  margin: 0;
 }
 
 .Home__hero-subtitle {
-  margin: 10px 0;
+  margin: 0;
   font-weight: 400;
   color: #333;
   font-size: 1.1rem;
@@ -41,33 +41,25 @@
 }
 
 @media (max-width: 768px) {
-  .Home__hero {
-    padding: 60px 0;
-  }
   .Home__hero-title {
-    margin: 8px 0;
-
     font-size: 1.1rem;
   }
 
   .Home__hero-subtitle {
-    margin: 8px 0;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 576px) {
   .Home__hero {
-    padding: 40px 0;
+    padding: 10px 0;
   }
 
   .Home__hero-title {
-    margin: 4px 0;
     font-size: 1rem;
   }
 
   .Home__hero-subtitle {
-    margin: 4px 0;
     font-size: 0.8rem;
   }
 
@@ -78,12 +70,11 @@
 
 .Home__content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* padding: 0 20px; */
-  /* max-width: 600px; */
+  gap: 20px;
 }
 
 .Home__content-card {
@@ -100,6 +91,7 @@
 }
 
 .Home__content-card:hover {
+  cursor: pointer;
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
@@ -135,8 +127,13 @@
   border-radius: 100%;
 
   color: #fff;
-  width: 72px !important;
-  height: 72px !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.Home__content-card-icon-whatsapp {
+  color: #25d366;
+  background: inherit;
 }
 
 .Home__content-card-button {

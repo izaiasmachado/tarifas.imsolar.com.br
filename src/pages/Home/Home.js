@@ -1,8 +1,9 @@
 import React from "react";
 import "./styles.css";
-import { Link } from "react-router-dom";
 import BoltIcon from "@mui/icons-material/Bolt";
-import { Button } from "@mui/material";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { Link } from "react-router-dom";
+import { RWebShare } from "react-web-share";
 
 export default function Home() {
   return (
@@ -22,38 +23,59 @@ export default function Home() {
         </div>
 
         <div className="Home__content">
-          <div className="Home__content-card">
-            <div className="Home__content-card-body">
-              <BoltIcon className="Home__content-card-icon" />
+          <Link
+            to="/sem-impostos"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <div className="Home__content-card">
+              <div className="Home__content-card-body">
+                <BoltIcon className="Home__content-card-icon" />
 
-              <div className="Home__content-card-text">
-                <div className="Home__content-card-title">
-                  <h3>Tarifas de Energia Sem Impostos</h3>
-                </div>
-                <div className="Home__content-card-subtitle">
-                  <h4>
-                    Tabela com tarifas de energia elétrica sem impostos,
-                    separado por concessionária de energia e com filtros
-                    relevantes.
-                  </h4>
+                <div className="Home__content-card-text">
+                  <div className="Home__content-card-title">
+                    <h3>Tarifas de Energia Sem Impostos</h3>
+                  </div>
+                  <div className="Home__content-card-subtitle">
+                    <h4>
+                      Tabela com tarifas de energia elétrica sem impostos,
+                      separado por concessionária de energia e com filtros
+                      relevantes.
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
+          </Link>
 
-            <div className="Home__content-card-button">
-              <Button size="small" color="primary">
-                <Link
-                  to="/sem-impostos"
-                  style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                  }}
-                >
-                  Ver tarifas
-                </Link>
-              </Button>
+          <RWebShare
+            data={{
+              text: "Conheça ferramentas informativas sobre as tarifas de energia de todo o Brasil!",
+              url: "https://tarifas.imsolar.com.br",
+              title: "Compartilhe o Tarifas de Energia",
+            }}
+          >
+            <div className="Home__content-card">
+              <div className="Home__content-card-body">
+                <WhatsAppIcon className="Home__content-card-icon Home__content-card-icon-whatsapp" />
+
+                <div className="Home__content-card-text">
+                  <div className="Home__content-card-title">
+                    <h3>Ajude Compartilhando Nossas Ferramentas</h3>
+                  </div>
+                  <div className="Home__content-card-subtitle">
+                    <h4>
+                      Compartilhe com seus amigos pelo WhatsApp nossas
+                      ferramentas informativas sobre as tarifas de energia de
+                      todo o Brasil!
+                    </h4>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </RWebShare>
         </div>
       </div>
     </div>
