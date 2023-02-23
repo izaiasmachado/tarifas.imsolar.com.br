@@ -41,33 +41,25 @@
 }
 
 @media (max-width: 768px) {
-  .Home__hero {
-    padding: 60px 0;
-  }
   .Home__hero-title {
-    margin: 8px 0;
-
     font-size: 1.1rem;
   }
 
   .Home__hero-subtitle {
-    margin: 8px 0;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 576px) {
   .Home__hero {
-    padding: 40px 0;
+    padding: 10px 0;
   }
 
   .Home__hero-title {
-    margin: 4px 0;
     font-size: 1rem;
   }
 
   .Home__hero-subtitle {
-    margin: 4px 0;
     font-size: 0.8rem;
   }
 
