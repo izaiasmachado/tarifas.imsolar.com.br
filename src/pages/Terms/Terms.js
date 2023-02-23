@@ -2,7 +2,6 @@ import React from "react";
 import "./styles.css";
 import { Typography } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 
 export default function Terms() {
   return (
@@ -15,9 +14,7 @@ export default function Terms() {
         </div>
 
         <Breadcrumbs className="Header__breadcrumbs">
-          <Link underline="hover" color="inherit" href="/">
-            Página Principal
-          </Link>
+          <a href="/">Página Principal</a>
           <Typography color="text.primary">Termos de Uso</Typography>
         </Breadcrumbs>
 

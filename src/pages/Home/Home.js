@@ -1,16 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
 import "./styles.css";
+import { Link } from "react-router-dom";
 import BoltIcon from "@mui/icons-material/Bolt";
 import { Button } from "@mui/material";
+
 export default function Home() {
-  const navigate = useNavigate();
-
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
   return (
     <div className="container-home">
       <div className="home">
@@ -47,12 +41,16 @@ export default function Home() {
             </div>
 
             <div className="Home__content-card-button">
-              <Button
-                size="small"
-                color="primary"
-                onClick={() => handleNavigate("/sem-impostos")}
-              >
-                Ver tarifas
+              <Button size="small" color="primary">
+                <Link
+                  to="/sem-impostos"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                >
+                  Ver tarifas
+                </Link>
               </Button>
             </div>
           </div>

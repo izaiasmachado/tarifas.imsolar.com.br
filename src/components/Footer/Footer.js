@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -13,10 +14,13 @@ export default function Footer() {
         <a href="https://imsolar.com.br" target="__blank">
           IM Solar
         </a>
-        <a href="https://github.com" target="__blank">
+        <a
+          href="https://github.com/izaiasmachado/tarifas.imsolar.com.br"
+          target="__blank"
+        >
           GitHub
         </a>
-        <a href="/termos-de-uso">Termos de Uso</a>
+        <Link to="/termos-de-uso">Termos de Uso</Link>
       </div>
     </div>
   );
