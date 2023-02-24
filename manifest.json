@@ -1,19 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tarifas de Energia",
+  "name": "Tarifas de Energia Elétrica - Brasil",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "img/meter-40.png",
+      "sizes": "40x40",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "img/meter-80.png",
+      "type": "image/png",
+      "sizes": "80x80"
+    },
+    {
+      "src": "img/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "img/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
