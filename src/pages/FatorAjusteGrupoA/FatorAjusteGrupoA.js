@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 import { MenuItem } from "@material-ui/core";
@@ -34,37 +34,51 @@ const outputFields = [
   {
     key: "totalTEForaPonta",
     name: "TE Fora Ponta",
-    default: "0",
-    unit: "R$",
-    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+    default: 0,
+    unit: {
+      name: "R$",
+      position: "left",
+    },
+    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
   },
   {
     key: "totalTEPonta",
     name: "TE Ponta",
-    default: "0",
-    unit: "R$",
-    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+    default: 0,
+    unit: {
+      name: "R$",
+      position: "left",
+    },
+    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
   },
   {
     key: "fatorAjuste",
     name: "Fator de Ajuste",
-    default: "0",
-    unit: "",
-    format: (value) => value.toFixed(5).toLocaleString("pt-BR"),
+    default: 0,
+    unit: {
+      name: "",
+    },
+    format: (value) => Number(value).toFixed(5).toLocaleString("pt-BR"),
   },
   {
     key: "ajustadaConsumoPonta",
     name: "Geração ajustada para compensar consumo Ponta",
-    default: "0",
-    unit: "kWh",
-    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+    default: 0,
+    unit: {
+      name: "kWh",
+      position: "right",
+    },
+    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
   },
   {
     key: "ajustadaConsumoForaPonta",
     name: "Geração total necessária para compensar todo o consumo",
-    default: "0",
-    unit: "kWh",
-    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+    default: 0,
+    unit: {
+      name: "kWh",
+      position: "right",
+    },
+    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
   },
 ];
 
@@ -90,7 +104,10 @@ const SelectInput = ({ filter, handleChangeState }) => {
 };
 
 export default function FatorAjusteGrupoA() {
-  const fatorAjuste = getFatorAjuste();
+  const [consumoForaPonta, setConsumoForaPonta] = useState("");
+  const [consumoPonta, setConsumoPonta] = useState("");
+
+  const ajuste = getFatorAjuste();
   const { handleChangeState, clearFilters, filters } =
     useFilter(initialFilters);
 
@@ -100,8 +117,31 @@ export default function FatorAjusteGrupoA() {
     clearFilters();
   };
 
-  // const data = filtersController.applyAllFilters(fatorAjuste);
-  const combinedFilters = filtersController.getCombinedFilters(fatorAjuste);
+  const data = filtersController.applyAllFilters(ajuste);
+  const combinedFilters = filtersController.getCombinedFilters(ajuste);
+
+  const selectedRow = data.length === 1 ? data[0] : undefined;
+
+  if (selectedRow) {
+    selectedRow.ajustadaConsumoPonta =
+      typeof consumoPonta === "number"
+        ? consumoPonta / selectedRow.fatorAjuste
+        : 0;
+    selectedRow.ajustadaConsumoForaPonta =
+      typeof consumoForaPonta === "number"
+        ? selectedRow.ajustadaConsumoPonta + consumoForaPonta
+        : 0;
+  }
+
+  const outputValues = outputFields.map((field) => {
+    const value =
+      selectedRow && selectedRow.hasOwnProperty(field.key)
+        ? selectedRow[field.key]
+        : field.default;
+
+    field.value = field.format(value);
+    return field;
+  });
 
   return (
     <div className="container-fator-ajuste">
@@ -122,6 +162,24 @@ export default function FatorAjusteGrupoA() {
                 handleChangeState={handleChangeState}
               />
             ))}
+            <div className="select-input input">
+              <div className="input-label">Consumo na Ponta</div>
+              <TextField
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">kWh</InputAdornment>
+                  ),
+                }}
+                type="number"
+                className="select-input fator-field input-field"
+                variant="outlined"
+                value={consumoPonta}
+                placeholder="0"
+                onChange={(event) =>
+                  setConsumoPonta(Number(event.target.value))
+                }
+              ></TextField>
+            </div>
 
             <div className="select-input input">
               <div className="input-label">Consumo Fora da Ponta</div>
@@ -134,19 +192,11 @@ export default function FatorAjusteGrupoA() {
                 type="number"
                 className="select-input fator-field input-field"
                 variant="outlined"
-              ></TextField>
-            </div>
-            <div className="select-input input">
-              <div className="input-label">Consumo na Ponta</div>
-              <TextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">kWh</InputAdornment>
-                  ),
-                }}
-                type="number"
-                className="select-input fator-field input-field"
-                variant="outlined"
+                value={consumoForaPonta}
+                placeholder="0"
+                onChange={(event) =>
+                  setConsumoForaPonta(Number(event.target.value))
+                }
               ></TextField>
             </div>
 
@@ -165,25 +215,59 @@ export default function FatorAjusteGrupoA() {
           </div>
 
           <div className="calculations">
-            <div className="calc">
+            {(outputValues || []).map((field) => {
+              const UnitTag = () => (
+                <div className="calc-result-unit">{field.unit.name}</div>
+              );
+              const NumberTag = () => (
+                <div className="calc-result-number">{field.value}</div>
+              );
+
+              return (
+                <div className="calc" key={field.key}>
+                  <div className="calc-label">{field.name}</div>
+                  <div className="calc-result">
+                    {field.unit.position === "right" ? (
+                      <>
+                        <NumberTag />
+                        <UnitTag />
+                      </>
+                    ) : (
+                      <>
+                        <UnitTag />
+                        <NumberTag />
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* <div className="calc">
               <div className="calc-label">TE Fora Ponta</div>
               <div className="calc-result">
                 <div className="calc-result-unit">R$</div>
-                <div className="calc-result-number">272,76</div>
+                <div className="calc-result-number">
+                  {outputValues[0].value}
+                </div>
               </div>
             </div>
             <div className="calc">
               <div className="calc-label">TE Ponta</div>
               <div className="calc-result">
                 <div className="calc-result-unit">R$</div>
-                <div className="calc-result-number">456,17</div>
+                <div className="calc-result-number">
+                  {outputValues[1].value}
+                </div>
               </div>
             </div>
             <div className="calc">
               <div className="calc-label">Fator de Ajuste</div>
               <div className="calc-result">
                 <div className="calc-result-unit"></div>
-                <div className="calc-result-number">1000</div>
+                <div className="calc-result-number">
+                  {outputValues[2].value}
+                </div>
               </div>
             </div>
             <div className="calc">
@@ -191,7 +275,9 @@ export default function FatorAjusteGrupoA() {
                 Geração ajustada para compensar consumo Ponta
               </div>
               <div className="calc-result">
-                <div className="calc-result-number">1000</div>
+                <div className="calc-result-number">
+                  {outputValues[3].value}
+                </div>
                 <div className="calc-result-unit">kWh</div>
               </div>
             </div>
@@ -201,10 +287,12 @@ export default function FatorAjusteGrupoA() {
                 Geração total necessária para compensar todo o consumo
               </div>
               <div className="calc-result">
-                <div className="calc-result-number">1000</div>
+                <div className="calc-result-number">
+                  {outputValues[4].value}
+                </div>
                 <div className="calc-result-unit">kWh</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
