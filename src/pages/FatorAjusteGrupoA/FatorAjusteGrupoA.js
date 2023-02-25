@@ -80,7 +80,7 @@ export default function FatorAjusteGrupoA() {
             <div className="input-title-icon">
               <CalculateIcon />
             </div>
-            <div className="input-title-text">Fator de Ajuste Grupo A</div>
+            <div className="input-title-text">Fator de Ajuste | Grupo A</div>
           </div>
 
           <div className="calculations">
