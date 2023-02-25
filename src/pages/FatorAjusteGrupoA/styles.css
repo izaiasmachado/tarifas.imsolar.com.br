@@ -1,0 +1,159 @@
+.container-fator-ajuste {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.fator-ajuste {
+  width: max-content;
+  height: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (max-width: 1040px) {
+  .fator-ajuste {
+    gap: 0px;
+  }
+}
+
+.container-input-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  background-color: #fefefe;
+  border-radius: 5px;
+  max-width: 450px;
+  padding: 40px 30px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.input-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  gap: 6px;
+}
+
+.input-title-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-title-icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.input-fields {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  min-width: 240px;
+  max-width: 350px;
+}
+
+.input-field {
+  background-color: #f3f3f5;
+  width: 100% !important;
+}
+
+.input-label {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+.container-calculations {
+  border-radius: 5px;
+  padding: 40px 30px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #742ce8;
+  width: 100%;
+  max-width: 450px;
+}
+
+.container-calculations .input-title {
+  color: #fff6ff;
+  margin-bottom: 20px;
+}
+
+.calculations {
+  color: #fff6ff;
+  height: 100%;
+}
+
+.calc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 240px;
+  width: 100%;
+  max-width: 600px;
+  border-bottom: 1px solid #985df5;
+  padding: 20px 0;
+  gap: 10px;
+}
+
+.calc-label {
+  font-size: 0.9rem;
+  color: #fff6ff;
+  max-width: 300px;
+}
+
+.calc-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-result-number {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.calc-result-unit {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.clear-fields button {
+  height: 56px;
+  border-radius: 4px;
+  background-color: #130729;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}

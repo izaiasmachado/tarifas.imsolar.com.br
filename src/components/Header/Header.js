@@ -2,16 +2,14 @@ import "./styles.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 
-export default function Header() {
+export default function Header({ title }) {
   return (
-    <div className="toolbar-container section">
-      <div className="toolbar">
-        <div className="title-toolbar">Tarifas de Energia Sem Impostos</div>
+    <div className="Header__container">
+      <div className="Header">
+        <div className="Header__title">{title}</div>
         <Breadcrumbs className="Header__breadcrumbs">
           <a href="/">Página Principal</a>
-          <Typography color="text.primary">
-            Tarifas de Energia Sem Impostos
-          </Typography>
+          <Typography color="text.primary">{title}</Typography>
         </Breadcrumbs>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function TarifasEnergiaSemImposto() {
   return (
     <div className="container-tarifas">
       <div className="tarifas">
-        <Header />
+        <Header title={"Tarifas de Energia Sem Impostos"} />
         <Filter
           filters={combinedFilters}
           handleChangeState={handleChangeState}
