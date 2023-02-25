@@ -8,7 +8,6 @@
 }
 
 .fator-ajuste {
-  /* width: 96%; */
   width: max-content;
   height: 98%;
   display: flex;
@@ -16,7 +15,6 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  /* max-width: 1400px; */
 }
 
 @media (max-width: 1040px) {

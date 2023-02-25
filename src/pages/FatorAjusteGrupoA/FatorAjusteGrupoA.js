@@ -153,7 +153,7 @@ export default function FatorAjusteGrupoA() {
   return (
     <div className="container-fator-ajuste">
       <div className="fator-ajuste">
-        <Header title="Fator de Ajuste do Grupo A" />
+        <Header title="Calculadora Fator de Ajuste TE - Grupo A" />
         <div className="container-input-fields">
           <div className="input-title">
             <div className="input-title-icon">
