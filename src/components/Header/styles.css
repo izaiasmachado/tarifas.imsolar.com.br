@@ -1,10 +1,18 @@
-.toolbar-container {
+.Header__container {
   width: 100%;
-}
-
-.toolbar {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #bcbcbc;
+  padding: 14px 0px;
+  margin-bottom: 20px;
+}
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
 }
 
 .Header__breadcrumbs {
@@ -12,7 +20,7 @@
   font-size: 1.2rem;
 }
 
-.title-toolbar {
+.Header__title {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -22,7 +30,7 @@
 }
 
 @media (max-width: 768px) {
-  .title-toolbar {
+  .Header__title {
     font-size: 1.5rem;
   }
 
@@ -32,7 +40,7 @@
 }
 
 @media (max-width: 576px) {
-  .title-toolbar {
+  .Header__title {
     font-size: 1.2rem;
   }
   .Header__breadcrumbs {

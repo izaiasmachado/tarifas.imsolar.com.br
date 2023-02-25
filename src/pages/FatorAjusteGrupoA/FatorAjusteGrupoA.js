@@ -11,6 +11,7 @@ import getFatorAjuste from "../../services/fatorAjuste";
 
 import useFilter from "../../services/useFilter";
 import FilterController from "../../services/filter";
+import Header from "../../components/Header/Header";
 
 const initialFilters = [
   {
@@ -119,6 +120,8 @@ export default function FatorAjusteGrupoA() {
 
   const handleClearFilters = () => {
     clearFilters();
+    setConsumoForaPonta("");
+    setConsumoPonta("");
   };
 
   const data = filtersController.applyAllFilters(ajuste);
@@ -150,6 +153,7 @@ export default function FatorAjusteGrupoA() {
   return (
     <div className="container-fator-ajuste">
       <div className="fator-ajuste">
+        <Header title="Fator de Ajuste do Grupo A" />
         <div className="container-input-fields">
           <div className="input-title">
             <div className="input-title-icon">
@@ -246,57 +250,6 @@ export default function FatorAjusteGrupoA() {
                 </div>
               );
             })}
-
-            {/* <div className="calc">
-              <div className="calc-label">TE Fora Ponta</div>
-              <div className="calc-result">
-                <div className="calc-result-unit">R$</div>
-                <div className="calc-result-number">
-                  {outputValues[0].value}
-                </div>
-              </div>
-            </div>
-            <div className="calc">
-              <div className="calc-label">TE Ponta</div>
-              <div className="calc-result">
-                <div className="calc-result-unit">R$</div>
-                <div className="calc-result-number">
-                  {outputValues[1].value}
-                </div>
-              </div>
-            </div>
-            <div className="calc">
-              <div className="calc-label">Fator de Ajuste</div>
-              <div className="calc-result">
-                <div className="calc-result-unit"></div>
-                <div className="calc-result-number">
-                  {outputValues[2].value}
-                </div>
-              </div>
-            </div>
-            <div className="calc">
-              <div className="calc-label">
-                Geração ajustada para compensar consumo Ponta
-              </div>
-              <div className="calc-result">
-                <div className="calc-result-number">
-                  {outputValues[3].value}
-                </div>
-                <div className="calc-result-unit">kWh</div>
-              </div>
-            </div>
-
-            <div className="calc">
-              <div className="calc-label">
-                Geração total necessária para compensar todo o consumo
-              </div>
-              <div className="calc-result">
-                <div className="calc-result-number">
-                  {outputValues[4].value}
-                </div>
-                <div className="calc-result-unit">kWh</div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

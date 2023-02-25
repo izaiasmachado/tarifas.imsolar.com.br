@@ -1,5 +1,4 @@
 .container-fator-ajuste {
-  padding: 20px 0 0 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -9,13 +8,15 @@
 }
 
 .fator-ajuste {
-  width: 96%;
+  /* width: 96%; */
+  width: max-content;
   height: 98%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  /* max-width: 1400px; */
 }
 
 @media (max-width: 1040px) {
