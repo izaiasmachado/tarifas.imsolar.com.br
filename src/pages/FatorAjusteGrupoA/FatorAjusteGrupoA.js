@@ -1,12 +1,108 @@
 import React from "react";
 import "./styles.css";
 
+import { MenuItem } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 import CalculateIcon from "@mui/icons-material/Calculate";
 
+import getFatorAjuste from "../../services/fatorAjuste";
+
+import useFilter from "../../services/useFilter";
+import FilterController from "../../services/filter";
+
+const initialFilters = [
+  {
+    key: "concessionaria",
+    name: "Concessionária",
+    default: "Escolha uma Concessionária",
+  },
+  {
+    key: "subgrupo",
+    name: "Subgrupo",
+    default: "Escolha um Subgrupo",
+  },
+  {
+    key: "modalidade",
+    name: "Modalidade",
+    default: "Escolha uma Modalidade",
+  },
+];
+
+const outputFields = [
+  {
+    key: "totalTEForaPonta",
+    name: "TE Fora Ponta",
+    default: "0",
+    unit: "R$",
+    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+  },
+  {
+    key: "totalTEPonta",
+    name: "TE Ponta",
+    default: "0",
+    unit: "R$",
+    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+  },
+  {
+    key: "fatorAjuste",
+    name: "Fator de Ajuste",
+    default: "0",
+    unit: "",
+    format: (value) => value.toFixed(5).toLocaleString("pt-BR"),
+  },
+  {
+    key: "ajustadaConsumoPonta",
+    name: "Geração ajustada para compensar consumo Ponta",
+    default: "0",
+    unit: "kWh",
+    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+  },
+  {
+    key: "ajustadaConsumoForaPonta",
+    name: "Geração total necessária para compensar todo o consumo",
+    default: "0",
+    unit: "kWh",
+    format: (value) => value.toFixed(2).toLocaleString("pt-BR"),
+  },
+];
+
+const SelectInput = ({ filter, handleChangeState }) => {
+  return (
+    <div className="select-input input">
+      <div className="input-label">{filter.name}</div>
+      <TextField
+        className="select-input fator-field input-field"
+        variant="outlined"
+        onChange={(event) => handleChangeState(event, { id: filter.key })}
+        value={filter.value}
+        select
+      >
+        {(filter.available || []).map((item) => (
+          <MenuItem key={`${filter.key}_${item}`} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </TextField>
+    </div>
+  );
+};
+
 export default function FatorAjusteGrupoA() {
+  const fatorAjuste = getFatorAjuste();
+  const { handleChangeState, clearFilters, filters } =
+    useFilter(initialFilters);
+
+  const filtersController = new FilterController(filters);
+
+  const handleClearFilters = () => {
+    clearFilters();
+  };
+
+  // const data = filtersController.applyAllFilters(fatorAjuste);
+  const combinedFilters = filtersController.getCombinedFilters(fatorAjuste);
+
   return (
     <div className="container-fator-ajuste">
       <div className="fator-ajuste">
@@ -19,32 +115,13 @@ export default function FatorAjusteGrupoA() {
           </div>
 
           <div className="input-fields">
-            <div className="select-input input">
-              <div className="input-label">Concessionária</div>
-              <TextField
-                className="select-input fator-field input-field"
-                variant="outlined"
-                select
-              ></TextField>
-            </div>
-
-            <div className="select-input input">
-              <div className="input-label">Subgrupo</div>
-              <TextField
-                className="select-input fator-field input-field"
-                variant="outlined"
-                select
-              ></TextField>
-            </div>
-
-            <div className="select-input input">
-              <div className="input-label">Modalidades</div>
-              <TextField
-                className="select-input fator-field input-field"
-                variant="outlined"
-                select
-              ></TextField>
-            </div>
+            {(combinedFilters || []).map((filter) => (
+              <SelectInput
+                key={filter.key}
+                filter={filter}
+                handleChangeState={handleChangeState}
+              />
+            ))}
 
             <div className="select-input input">
               <div className="input-label">Consumo Fora da Ponta</div>
@@ -74,13 +151,7 @@ export default function FatorAjusteGrupoA() {
             </div>
 
             <div className="input clear-fields">
-              <button
-                onClick={() => {
-                  console.log("clear fields");
-                }}
-              >
-                Limpar Campos
-              </button>
+              <button onClick={handleClearFilters}>Limpar Campos</button>
             </div>
           </div>
         </div>
