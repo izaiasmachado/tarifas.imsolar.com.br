@@ -1,15 +1,15 @@
 import MetaTags from "react-meta-tags";
-import { generateMetadata } from "./metadata";
+import { getPageMetadata } from "./metadata";
 
 export default function getRoutesWithMetadata(routes = []) {
-  const pages = generateMetadata() || [];
-
   return routes.map((route) => {
-    const page = pages.find((page) => page.path === route.path) || {};
-    const Component = route.component;
-    const meta = page.meta;
+    const page = getPageMetadata(route);
+    route.meta = page.meta;
 
-    page.component = (
+    const Component = route.component;
+    const meta = route.meta;
+
+    route.component = () => (
       <>
         <MetaTags>
           <title>{meta.title}</title>
@@ -21,10 +21,10 @@ export default function getRoutesWithMetadata(routes = []) {
           <meta property="og:description" content={meta["og:description"]} />
           <meta property="og:url" content={meta.cannonical} />
         </MetaTags>
-        <Component {...meta} />
+        {Component && <Component />}
       </>
     );
 
-    return page;
+    return route;
   });
 }

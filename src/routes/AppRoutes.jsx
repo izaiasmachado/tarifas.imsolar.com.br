@@ -4,9 +4,6 @@ import Home from "../pages/Home/Home";
 import Terms from "../pages/Terms/Terms";
 import TarifasEnergiaSemImpostos from "../pages/TarifasEnergiaSemImpostos/TarifasEnergiaSemImpostos";
 import FatorAjusteGrupoA from "../pages/FatorAjusteGrupoA/FatorAjusteGrupoA";
-
-// import { getSiteMap } from "./RoutesWithMetadata";
-
 import getRoutesWithMetadata from "../helpers/getRoutesWithMetadata";
 
 const routesObject = [
@@ -18,6 +15,7 @@ const routesObject = [
 
 function AppRoutes() {
   const pages = getRoutesWithMetadata(routesObject);
+
   return (
     <Routes>
       {pages.length > 0 && (
@@ -27,7 +25,7 @@ function AppRoutes() {
               key={page.path}
               exact
               path={page.path}
-              element={page.component}
+              element={<page.component />}
             />
           ))}
           <Route path="*" element={<Navigate to="/" />} />
