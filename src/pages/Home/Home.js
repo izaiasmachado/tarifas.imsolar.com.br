@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import BoltIcon from "@mui/icons-material/Bolt";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Link } from "react-router-dom";
 import { RWebShare } from "react-web-share";
@@ -13,13 +12,12 @@ export default function Home() {
       <div className="home">
         <div className="Home__hero">
           <div className="Home__hero-title">
-            <h1>Tarifas de Energia</h1>
+            <h1>Ferramentas de Tarifação de Energia Elétrica</h1>
           </div>
           <div className="Home__hero-subtitle">
             <h2>
-              Conheça as tarifas de
-              <br id="Home__hero-subtitle-breakpoint" /> Energia Elétrica do
-              Brasil
+              Conheça nossas ferramentas para trabalho com tarifas de energia
+              elétrica no Brasil
             </h2>
           </div>
         </div>

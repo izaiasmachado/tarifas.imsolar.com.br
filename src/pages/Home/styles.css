@@ -17,10 +17,11 @@
 .Home__hero-title {
   font-weight: 600;
   color: #333;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .Home__hero-title h1 {
+  text-align: center;
   margin: 0;
 }
 
@@ -28,25 +29,22 @@
   margin: 0;
   font-weight: 400;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: center;
 }
 
 .Home__hero-subtitle h2 {
+  text-align: center;
   margin: 0;
-}
-
-#Home__hero-subtitle-breakpoint {
-  display: none;
 }
 
 @media (max-width: 768px) {
   .Home__hero-title {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .Home__hero-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -56,11 +54,11 @@
   }
 
   .Home__hero-title {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .Home__hero-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   #Home__hero-subtitle-breakpoint {
