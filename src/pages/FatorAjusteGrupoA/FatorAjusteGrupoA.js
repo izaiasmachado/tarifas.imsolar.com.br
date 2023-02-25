@@ -72,6 +72,16 @@ export default function FatorAjusteGrupoA() {
                 variant="outlined"
               ></TextField>
             </div>
+
+            <div className="input clear-fields">
+              <button
+                onClick={() => {
+                  console.log("clear fields");
+                }}
+              >
+                Limpar Campos
+              </button>
+            </div>
           </div>
         </div>
 
