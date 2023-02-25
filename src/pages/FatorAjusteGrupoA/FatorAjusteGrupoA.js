@@ -3,12 +3,21 @@ import "./styles.css";
 
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
+import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+import CalculateIcon from "@mui/icons-material/Calculate";
 
 export default function FatorAjusteGrupoA() {
   return (
     <div className="container-fator-ajuste">
       <div className="fator-ajuste">
         <div className="container-input-fields">
+          <div className="input-title">
+            <div className="input-title-icon">
+              <BubbleChartIcon />
+            </div>
+            <div className="input-title-text">Dados de Consumo</div>
+          </div>
+
           <div className="input-fields">
             <div className="select-input input">
               <div className="input-label">Concessionária</div>
@@ -67,6 +76,13 @@ export default function FatorAjusteGrupoA() {
         </div>
 
         <div className="container-calculations">
+          <div className="input-title">
+            <div className="input-title-icon">
+              <CalculateIcon />
+            </div>
+            <div className="input-title-text">Fator de Ajuste Grupo A</div>
+          </div>
+
           <div className="calculations">
             <div className="calc">
               <div className="calc-label">TE Fora Ponta</div>
