@@ -30,6 +30,10 @@ const initialFilters = [
   },
 ];
 
+const formatter = new Intl.NumberFormat("pt-BR", {
+  minimumFractionDigits: 2,
+});
+
 const outputFields = [
   {
     key: "totalTEForaPonta",
@@ -39,7 +43,7 @@ const outputFields = [
       name: "R$",
       position: "left",
     },
-    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
+    format: (value) => formatter.format(Number(value)),
   },
   {
     key: "totalTEPonta",
@@ -49,7 +53,7 @@ const outputFields = [
       name: "R$",
       position: "left",
     },
-    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
+    format: (value) => formatter.format(Number(value)),
   },
   {
     key: "fatorAjuste",
@@ -58,7 +62,7 @@ const outputFields = [
     unit: {
       name: "",
     },
-    format: (value) => Number(value).toFixed(5).toLocaleString("pt-BR"),
+    format: (value) => Number(value).toFixed(5).replace(".", ","),
   },
   {
     key: "ajustadaConsumoPonta",
@@ -68,7 +72,7 @@ const outputFields = [
       name: "kWh",
       position: "right",
     },
-    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
+    format: (value) => formatter.format(Number(value)),
   },
   {
     key: "ajustadaConsumoForaPonta",
@@ -78,7 +82,7 @@ const outputFields = [
       name: "kWh",
       position: "right",
     },
-    format: (value) => Number(value).toFixed(2).toLocaleString("pt-BR"),
+    format: (value) => formatter.format(Number(value)),
   },
 ];
 

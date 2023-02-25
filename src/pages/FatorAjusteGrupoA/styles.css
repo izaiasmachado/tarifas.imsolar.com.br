@@ -121,11 +121,13 @@
   max-width: 600px;
   border-bottom: 1px solid #985df5;
   padding: 20px 0;
+  gap: 10px;
 }
 
 .calc-label {
   font-size: 0.9rem;
   color: #fff6ff;
+  max-width: 300px;
 }
 
 .calc-result {
