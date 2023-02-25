@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import TarifasEnergiaSemImposto from "../pages/TarifasEnergiaSemImpostos/TarifasEnergiaSemImpostos";
 import Home from "../pages/Home/Home";
 import Terms from "../pages/Terms/Terms";
+import FatorAjusteGrupoA from "../pages/FatorAjusteGrupoA/FatorAjusteGrupoA";
 
 function AppRoutes() {
   return (
@@ -15,6 +16,12 @@ function AppRoutes() {
         path="/sem-impostos"
         element={<TarifasEnergiaSemImposto />}
       />
+      <Route
+        exact
+        path="/fator-ajuste-grupo-a"
+        element={<FatorAjusteGrupoA />}
+      />
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
