@@ -1,0 +1,30 @@
+{
+  "defaultPage": {
+    "meta": {
+      "title": "Ferramentas Tarifação de Energia Elétrica",
+      "shortDescription": "Conheça nossas ferramentas para trabalho com tarifas de energia elétrica no Brasil",
+      "description": "Transforme sua rotina profissional e aumente sua produtividade com as melhores ferramentas disponíveis. Destaque-se no mercado de geração de energia!"
+    }
+  },
+  "pages": [
+    { "path": "/termos-de-uso", "meta": { "title": "Termos de Uso" } },
+    {
+      "path": "/sem-impostos",
+      "siteMap": true,
+      "showInMenu": true,
+      "meta": {
+        "title": "Tarifas de Energia Sem Impostos",
+        "description": "Tabela com tarifas de energia elétrica sem impostos, separado por concessionária de energia e com filtros relevantes."
+      }
+    },
+    {
+      "path": "/fator-ajuste-grupo-a",
+      "showInMenu": true,
+      "siteMap": true,
+      "meta": {
+        "title": "Calculadora Fator de Ajuste TE - Grupo A",
+        "description": "Calculadora de energia fora ponta necessária para compensar o consumo da hora ponta, em clientes Grupo A com tarifação binômia."
+      }
+    }
+  ]
+}

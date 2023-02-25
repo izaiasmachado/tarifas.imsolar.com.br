@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-meta-tags": "^1.0.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-web-share": "^2.0.2",
@@ -22,6 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "node src/scripts/generateSiteMap.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
