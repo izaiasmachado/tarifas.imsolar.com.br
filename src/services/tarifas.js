@@ -3,20 +3,20 @@ import tarifasJSON from "../utils/tarifas.json";
 const serializeTarifas = (tarifas) => {
   return tarifas.reduce((acc, tarifa, idx) => {
     const allValuesValid = [
+      tarifa.concessionaria,
       tarifa.subgrupo,
-      tarifa.modalidade,
       tarifa.classe,
       tarifa.subclasse,
+      tarifa.detalhe,
       tarifa.posto,
       tarifa.unidade,
-      tarifa.totaltusd,
-      tarifa.totalte,
+      tarifa.acessante,
+      tarifa.totalTUSD,
+      tarifa.totalTE,
+      tarifa.TUSDFioB,
     ].every((value) => !!value);
 
-    if (allValuesValid && idx !== 0) {
-      acc.push(tarifa);
-    }
-
+    if (allValuesValid) acc.push(tarifa);
     return acc;
   }, []);
 };
