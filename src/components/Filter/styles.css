@@ -1,18 +1,19 @@
 .detailed-search-container {
   width: 100%;
+  padding: 10px 0 5px 0;
 }
 
-.select-input {
-  width: 200px;
-}
-
-.detailed-search-container {
-  border-bottom: 1px solid #bcbcbc;
+.Filter__select-input,
+.Filter__button-input {
+  width: 100%;
+  max-width: 280px;
 }
 
 .detailed-search-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
@@ -23,26 +24,85 @@
   gap: 20px;
 }
 
-.detailed-search-form-body > * {
-  min-width: 150px !important;
-}
-
-.detailed-search-submit {
+.Filter__container {
   width: 100%;
   display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.filter {
+  width: 98%;
+  position: relative;
+  display: inline-flex;
   justify-content: flex-end;
 }
 
-@media (max-width: 768px) {
-  .detailed-search-form {
-    flex-direction: column;
-  }
+.filter__dropdown {
+  min-width: 310px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  width: fit-content;
+  z-index: 1;
+  right: 0;
+  max-height: calc(100vh - 152px);
+  position: absolute;
+  margin-top: 54px;
+  background-color: #f6fafd;
+  border-radius: 7px;
+  border: 1px solid #bcbcbc;
+}
 
-  .detailed-search-submit {
-    justify-content: center;
+@media (max-width: 480px) {
+  .filter__dropdown {
+    width: 100%;
   }
-  .detailed-search-form-body {
-    flex-wrap: wrap;
-    align-items: center;
-  }
+}
+
+.Filter__button {
+  background-color: #985df5;
+  border-radius: 5px;
+  border: none;
+}
+
+.Filter__button_content {
+  width: 100px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.Filter__button_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Filter__button_icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.Filter__button_text {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.Filter__dropdown_header {
+  border-bottom: 1px solid #bcbcbc;
+  background-color: #edf2f6;
+  max-width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.filter__dropdown_title {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
