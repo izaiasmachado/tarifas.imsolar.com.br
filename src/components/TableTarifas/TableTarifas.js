@@ -72,6 +72,13 @@ function TableTarifas({ data, clearPage }) {
       format: (value) => value.toLocaleString("en-US"),
     },
     {
+      id: "detalhe",
+      label: "Detalhe",
+      minWidth: 220,
+      align: "left",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
       id: "posto",
       label: "Posto",
       minWidth: 100,
@@ -87,15 +94,29 @@ function TableTarifas({ data, clearPage }) {
       format: (value) => value.toLocaleString("en-US"),
     },
     {
-      id: "totaltusd",
+      id: "acessante",
+      label: "Acessante",
+      minWidth: 100,
+      align: "left",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "totalTUSD",
       label: "Total TUSD",
       minWidth: 70,
       align: "left",
       format: (value) => formatter.format(value),
     },
     {
-      id: "totalte",
+      id: "totalTE",
       label: "Total TE",
+      minWidth: 80,
+      align: "left",
+      format: (value) => formatter.format(value),
+    },
+    {
+      id: "TUSDFioB",
+      label: "TUSD Fio B",
       minWidth: 80,
       align: "left",
       format: (value) => formatter.format(value),
@@ -171,7 +192,7 @@ function TableTarifas({ data, clearPage }) {
               <TableRow>
                 <TablePagination
                   labelRowsPerPage="Linhas por página"
-                  colSpan={10}
+                  colSpan={12}
                   count={rows.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
