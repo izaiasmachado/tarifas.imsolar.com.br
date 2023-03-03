@@ -17,18 +17,17 @@
   align-items: center;
 }
 
-.toolbar-container,
 .detailed-search,
 .table-container {
   padding: 14px 0;
 }
 
-.table-container {
-  padding: 12px 0 0 0;
+.detailed-search {
+  width: 98% !important;
 }
 
 .table,
-.toolbar,
-.detailed-search {
-  width: 98% !important;
+.toolbar {
+  width: 100%;
+  max-width: 1400px;
 }
