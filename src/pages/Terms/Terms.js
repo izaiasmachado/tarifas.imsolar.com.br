@@ -1,23 +1,13 @@
 import React from "react";
 import "./styles.css";
+import Header from "../../components/Header/Header";
 import { Typography } from "@mui/material";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 export default function Terms() {
   return (
     <div className="terms-container">
       <div className="terms">
-        <div className="Terms__title-container">
-          <Typography variant="h4" component="h1" gutterBottom>
-            Termos de Uso
-          </Typography>
-        </div>
-
-        <Breadcrumbs className="Header__breadcrumbs">
-          <a href="/">Página Principal</a>
-          <Typography color="text.primary">Termos de Uso</Typography>
-        </Breadcrumbs>
-
+        <Header title={"Termos de Uso"} />
         <div className="Terms__content-container">
           <Typography variant="body1" gutterBottom>
             <p>
