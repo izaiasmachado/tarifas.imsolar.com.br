@@ -5,21 +5,24 @@ import { Link } from "react-router-dom";
 import { RWebShare } from "react-web-share";
 import TocIcon from "@mui/icons-material/Toc";
 import TableViewIcon from "@mui/icons-material/TableView";
+import { Navbar } from "../../components/Navbar/Navbar";
 
 export default function Home() {
   return (
     <div className="container-home">
       <div className="home">
+        <Navbar />
+
         <div className="Home__hero">
-          <div className="Home__hero-title">
+          {/* <div className="Home__hero-title">
             <h1>Ferramentas de Tarifação de Energia Elétrica</h1>
-          </div>
-          <div className="Home__hero-subtitle">
+          </div> */}
+          {/* <div className="Home__hero-subtitle">
             <h2>
               Conheça nossas ferramentas para trabalho com tarifas de energia
               elétrica no Brasil
             </h2>
-          </div>
+          </div> */}
         </div>
 
         <div className="Home__content">

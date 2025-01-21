@@ -4,7 +4,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 10px;
+  width: 100% ;
+}
+
+.home {
+  flex-direction: column;
+  align-items: center;  
+  width: 100%;
 }
 
 .Home__hero {
