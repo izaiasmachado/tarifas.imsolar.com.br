@@ -1,0 +1,34 @@
+.navbar {
+    background-color: #742ce8;
+    opacity: 0.9;
+    color: #fff;
+    padding: 5px 30px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-items-list {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 40px;
+}
+
+.navbar-item {
+    font-size: 1.1rem;
+
+}
+
+.navbar-item:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.navbar-logo-alternative {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
