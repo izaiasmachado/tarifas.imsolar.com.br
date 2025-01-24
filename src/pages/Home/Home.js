@@ -13,16 +13,21 @@ export default function Home() {
       <div className="home">
         <Navbar />
 
+        {/* bg-green-500 text-white py-20 */}
         <div className="Home__hero">
-          {/* <div className="Home__hero-title">
-            <h1>Ferramentas de Tarifação de Energia Elétrica</h1>
-          </div> */}
-          {/* <div className="Home__hero-subtitle">
+          <div className="Home__hero-title">
+            <h1>Facilite seus projetos elétricos</h1>
+          </div>
+          <div className="Home__hero-subtitle">
             <h2>
               Conheça nossas ferramentas para trabalho com tarifas de energia
               elétrica no Brasil
             </h2>
-          </div> */}
+          </div>
+
+          <Link href="/tools" className="Home__hero-cta-button">
+            Conheça nossas ferramentas
+          </Link>
         </div>
 
         <div className="Home__content">

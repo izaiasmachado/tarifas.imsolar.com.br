@@ -16,13 +16,19 @@
 .Home__hero {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
   padding: 20px 0;
+  height: 240px;
+  background-color: #742ce8;
+  opacity: 0.8;
+  color: #fff;
 }
 
 .Home__hero-title {
   font-weight: 600;
-  color: #333;
+  /* color: #333; */
   font-size: 1.1rem;
 }
 
@@ -34,7 +40,6 @@
 .Home__hero-subtitle {
   margin: 0;
   font-weight: 400;
-  color: #333;
   font-size: 1rem;
   text-align: center;
 }
@@ -143,4 +148,27 @@
 .Home__content-card-button {
   display: flex;
   justify-content: flex-end;
+}
+
+.Home__hero-cta {
+  display: flex;
+  flex-direction: row;
+}
+
+.Home__hero-cta-button {
+  background-color: white;
+  color: #742ce8;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+
+}
+
+.Home__hero-cta-button:hover {
+  color: black;
+  transition: 600ms;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
