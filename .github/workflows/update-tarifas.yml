@@ -1,0 +1,57 @@
+name: Atualizar tarifas (ANEEL)
+
+# Roda mensalmente para regenerar os dados de tarifas a partir dos Dados
+# Abertos da ANEEL. Se houver mudanças, abre um Pull Request para revisão
+# manual antes da publicação.
+
+on:
+  schedule:
+    # Dia 5 de cada mês, 06:00 UTC (03:00 BRT).
+    - cron: "0 6 5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/aneel/requirements.txt
+
+      - name: Fetch tariffs from ANEEL
+        run: python3 scripts/aneel/fetch_tarifas.py
+
+      - name: Validate derivation
+        run: python3 scripts/aneel/test_derive.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(data): update ANEEL tariffs"
+          branch: chore/update-tarifas
+          delete-branch: true
+          title: "chore(data): update ANEEL tariffs"
+          body: |
+            Atualização automática dos dados de tarifas a partir dos Dados
+            Abertos da ANEEL.
+
+            - `public/data/tarifas.json`
+            - `public/data/fator-ajuste.json`
+            - `public/data/meta.json`
+
+            Gerado pelo workflow `update-tarifas.yml`. Revise os números antes
+            de publicar (merge na `main`).
+          labels: |
+            dados
+            automated
