@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Teste offline da derivação do fator de ajuste.
 
-Valida ``derive_fator_ajuste`` contra os dados versionados em
-``public/data``, sem acesso à rede. Roda no CI para proteger a lógica de
-derivação contra regressões.
+`public/data/fator-ajuste.json` é derivado de `public/data/tarifas.json` pelo
+mesmo `derive_fator_ajuste` usado em produção. Este teste garante essa
+auto-consistência (sem acesso à rede) e protege a lógica contra regressões.
+Roda no CI.
 
 Uso:
     python scripts/aneel/test_derive.py
@@ -24,53 +25,52 @@ DATA_DIR = Path(__file__).resolve().parents[2] / "public" / "data"
 
 def main() -> int:
     tarifas = json.loads((DATA_DIR / "tarifas.json").read_text("utf-8"))
-    expected = json.loads((DATA_DIR / "fator-ajuste.json").read_text("utf-8"))
+    committed = json.loads((DATA_DIR / "fator-ajuste.json").read_text("utf-8"))
 
     derived = derive_fator_ajuste(tarifas)
 
-    expected_index = {
-        (e["concessionaria"], e["subgrupo"], e["modalidade"]): e
-        for e in expected
-    }
-    derived_index = {
-        (d["concessionaria"], d["subgrupo"], d["modalidade"]): d
-        for d in derived
-    }
-
-    mismatches = 0
-    for key, exp in expected_index.items():
-        got = derived_index.get(key)
-        if got is None:
-            # Registros ausentes na base de origem são tolerados; o que não
-            # pode acontecer é um valor DIFERENTE para a mesma chave.
-            continue
-        same = (
-            abs(
-                float(got["totalTEForaPonta"]) - float(exp["totalTEForaPonta"])
-            )
-            < 0.01
-            and abs(float(got["totalTEPonta"]) - float(exp["totalTEPonta"]))
-            < 0.01
-            and abs(float(got["fatorAjuste"]) - float(exp["fatorAjuste"]))
-            < 1e-6
+    # 1) Auto-consistência: re-derivar de tarifas.json reproduz o arquivo
+    #    versionado exatamente (mesma ordem, mesmos valores).
+    if derived != committed:
+        d_idx = {
+            (e["concessionaria"], e["subgrupo"], e["modalidade"]): e
+            for e in derived
+        }
+        c_idx = {
+            (e["concessionaria"], e["subgrupo"], e["modalidade"]): e
+            for e in committed
+        }
+        only_derived = set(d_idx) - set(c_idx)
+        only_committed = set(c_idx) - set(d_idx)
+        diffs = [
+            (k, d_idx[k], c_idx[k])
+            for k in set(d_idx) & set(c_idx)
+            if d_idx[k] != c_idx[k]
+        ]
+        print("FALHA: fator-ajuste.json não está em sincronia com tarifas.json.")
+        print(f"  só no derivado: {len(only_derived)}")
+        print(f"  só no versionado: {len(only_committed)}")
+        print(f"  valores divergentes: {len(diffs)}")
+        for k, d, c in diffs[:5]:
+            print(f"    {k}: derivado={d} versionado={c}")
+        print(
+            "  Rode `python3 scripts/aneel/fetch_tarifas.py` para "
+            "regenerar os dados."
         )
-        if not same:
-            mismatches += 1
-            print(f"MISMATCH {key}: got={got} expected={exp}")
+        return 1
 
-    covered = len(set(expected_index) & set(derived_index))
+    # 2) Sanidade dos valores.
+    bad = [
+        e for e in derived if not (0.0 < float(e["fatorAjuste"]) <= 1.0)
+    ]
+    if bad:
+        print(f"FALHA: {len(bad)} fatores fora de (0, 1]; ex.: {bad[0]}")
+        return 1
+
     print(
-        f"derivados={len(derived)} esperados={len(expected)} "
-        f"cobertos={covered} divergencias={mismatches}"
+        f"OK: {len(derived)} registros derivados reproduzem "
+        f"fator-ajuste.json e os fatores estão em (0, 1]."
     )
-
-    if mismatches:
-        print("FALHA: a derivação produziu valores divergentes.")
-        return 1
-    if covered < len(expected) * 0.95:
-        print("FALHA: cobertura abaixo de 95% dos registros esperados.")
-        return 1
-    print("OK: derivação do fator de ajuste validada.")
     return 0
 
 

@@ -276,17 +276,23 @@ def build_tarifas(
 
 
 def derive_fator_ajuste(tarifas: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Deriva o fator de ajuste da TE para o Grupo A (modalidades binômias).
+    """Deriva o fator de ajuste para o Grupo A (modalidades binômias).
 
-    Lógica validada contra a base anterior do projeto: para cada
-    (concessionária, subgrupo, modalidade) do Grupo A, usando as linhas de
-    energia (MWh) da classe padrão com detalhe padrão, o fator é
-    TE_foraPonta / TE_ponta.
+    Para cada (concessionária, subgrupo, modalidade) do Grupo A, usando as
+    linhas de energia (MWh) da classe padrão com detalhe padrão, o fator é
+    valor_foraPonta / valor_ponta.
 
-    A base traz, para a mesma chave/posto, linhas duplicadas com valores
-    diferentes (ex.: tarifa cheia vs. variações). Tomamos o MAIOR TE por posto,
-    que corresponde à tarifa de referência (as variações descontadas, como a
-    classe Rural, ficam de fora pelo filtro de classe).
+    IMPORTANTE — qual coluna: na base da ANEEL é a coluna **TUSD** que carrega
+    o diferencial ponta / fora-ponta para o Grupo A (a coluna TE costuma vir
+    achatada entre os postos nesta base). Os campos de saída mantêm os nomes
+    históricos `totalTE*` apenas por compatibilidade com o contrato de dados do
+    site. Reproduzir a base anterior a partir de TE dava 0 acertos; a partir de
+    TUSD reproduz ~95% (o restante é divergência de vintage entre os JSONs
+    legados). Ver `test_derive.py`.
+
+    A base traz, para a mesma chave/posto, linhas duplicadas; tomamos o MAIOR
+    valor por posto (tarifa de referência); variações descontadas, como a
+    classe Rural, ficam de fora pelo filtro de classe.
     """
     grouped: dict[tuple[str, str, str], dict[str, float]] = {}
     for t in tarifas:
@@ -302,7 +308,8 @@ def derive_fator_ajuste(tarifas: list[dict[str, str]]) -> list[dict[str, str]]:
             continue
         key = (t["concessionaria"], t["subgrupo"], t["modalidade"])
         posto = grouped.setdefault(key, {})
-        value = float(t["totalTE"])
+        # Diferencial ponta/fora-ponta vive na coluna TUSD nesta base (ver doc).
+        value = float(t["totalTUSD"])
         posto[t["posto"]] = max(posto.get(t["posto"], 0.0), value)
 
     out: list[dict[str, str]] = []

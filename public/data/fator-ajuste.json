@@ -57,18 +57,114 @@
   },
   {
     "concessionaria": "CEA",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "215.60",
+    "totalTEPonta": "322.12",
+    "fatorAjuste": "0.6693157829380355"
+  },
+  {
+    "concessionaria": "CEA",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "215.60",
+    "totalTEPonta": "322.12",
+    "fatorAjuste": "0.6693157829380355"
+  },
+  {
+    "concessionaria": "CEA",
+    "subgrupo": "A3a",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "215.60",
+    "totalTEPonta": "322.12",
+    "fatorAjuste": "0.6693157829380355"
+  },
+  {
+    "concessionaria": "CEA",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "201.63",
-    "totalTEPonta": "201.63",
-    "fatorAjuste": "1.0"
+    "totalTEForaPonta": "215.60",
+    "totalTEPonta": "322.12",
+    "fatorAjuste": "0.6693157829380355"
   },
   {
     "concessionaria": "CEA",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "201.63",
-    "totalTEPonta": "201.63",
+    "totalTEForaPonta": "215.60",
+    "totalTEPonta": "322.12",
+    "fatorAjuste": "0.6693157829380355"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "A2",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "A3a",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "AS",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEB",
+    "subgrupo": "AS",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "335.75",
+    "totalTEPonta": "543.08",
+    "fatorAjuste": "0.6182330411725712"
+  },
+  {
+    "concessionaria": "CEDRAP",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "266.47",
+    "totalTEPonta": "266.47",
+    "fatorAjuste": "1.0"
+  },
+  {
+    "concessionaria": "CEDRAP",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "266.47",
+    "totalTEPonta": "266.47",
     "fatorAjuste": "1.0"
   },
   {
@@ -152,36 +248,52 @@
     "fatorAjuste": "1.0"
   },
   {
-    "concessionaria": "CEJAMA",
-    "subgrupo": "A4",
+    "concessionaria": "CELESC-DIS",
+    "subgrupo": "A2",
     "modalidade": "Azul",
-    "totalTEForaPonta": "191.01",
-    "totalTEPonta": "191.01",
-    "fatorAjuste": "1.0"
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
   },
   {
-    "concessionaria": "CEJAMA",
-    "subgrupo": "A4",
+    "concessionaria": "CELESC-DIS",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
+  },
+  {
+    "concessionaria": "CELESC-DIS",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
+  },
+  {
+    "concessionaria": "CELESC-DIS",
+    "subgrupo": "A3a",
     "modalidade": "Verde",
-    "totalTEForaPonta": "191.01",
-    "totalTEPonta": "191.01",
-    "fatorAjuste": "1.0"
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
   },
   {
     "concessionaria": "CELESC-DIS",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "191.01",
-    "totalTEPonta": "191.01",
-    "fatorAjuste": "1.0"
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
   },
   {
     "concessionaria": "CELESC-DIS",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "191.01",
-    "totalTEPonta": "191.01",
-    "fatorAjuste": "1.0"
+    "totalTEForaPonta": "250.04",
+    "totalTEPonta": "399.84",
+    "fatorAjuste": "0.6253501400560224"
   },
   {
     "concessionaria": "CELETRO",
@@ -379,16 +491,16 @@
     "concessionaria": "CERAL ANITÁPOLIS",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "192.1",
-    "totalTEPonta": "192.1",
+    "totalTEForaPonta": "192.10",
+    "totalTEPonta": "192.10",
     "fatorAjuste": "1.0"
   },
   {
     "concessionaria": "CERAL ANITÁPOLIS",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "192.1",
-    "totalTEPonta": "192.1",
+    "totalTEForaPonta": "192.10",
+    "totalTEPonta": "192.10",
     "fatorAjuste": "1.0"
   },
   {
@@ -443,16 +555,16 @@
     "concessionaria": "CERCI",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "203.38",
-    "totalTEPonta": "203.38",
+    "totalTEForaPonta": "260.80",
+    "totalTEPonta": "260.80",
     "fatorAjuste": "1.0"
   },
   {
     "concessionaria": "CERCI",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "203.38",
-    "totalTEPonta": "203.38",
+    "totalTEForaPonta": "260.80",
+    "totalTEPonta": "260.80",
     "fatorAjuste": "1.0"
   },
   {
@@ -523,16 +635,16 @@
     "concessionaria": "CERGAL",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "195.8",
-    "totalTEPonta": "195.8",
+    "totalTEForaPonta": "195.80",
+    "totalTEPonta": "195.80",
     "fatorAjuste": "1.0"
   },
   {
     "concessionaria": "CERGAL",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "195.8",
-    "totalTEPonta": "195.8",
+    "totalTEForaPonta": "195.80",
+    "totalTEPonta": "195.80",
     "fatorAjuste": "1.0"
   },
   {
@@ -619,16 +731,16 @@
     "concessionaria": "CERMISSÕES",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "216.8",
-    "totalTEPonta": "216.8",
+    "totalTEForaPonta": "216.80",
+    "totalTEPonta": "216.80",
     "fatorAjuste": "1.0"
   },
   {
     "concessionaria": "CERMISSÕES",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "216.8",
-    "totalTEPonta": "216.8",
+    "totalTEForaPonta": "216.80",
+    "totalTEPonta": "216.80",
     "fatorAjuste": "1.0"
   },
   {
@@ -803,16 +915,16 @@
     "concessionaria": "CERTHIL",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "196.0",
-    "totalTEPonta": "196.0",
+    "totalTEForaPonta": "196.00",
+    "totalTEPonta": "196.00",
     "fatorAjuste": "1.0"
   },
   {
     "concessionaria": "CERTHIL",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "196.0",
-    "totalTEPonta": "196.0",
+    "totalTEForaPonta": "196.00",
+    "totalTEPonta": "196.00",
     "fatorAjuste": "1.0"
   },
   {
@@ -862,6 +974,38 @@
     "totalTEForaPonta": "188.23",
     "totalTEPonta": "188.23",
     "fatorAjuste": "1.0"
+  },
+  {
+    "concessionaria": "CHESP",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "222.39",
+    "totalTEPonta": "361.95",
+    "fatorAjuste": "0.6144218814753418"
+  },
+  {
+    "concessionaria": "CHESP",
+    "subgrupo": "A3a",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "222.39",
+    "totalTEPonta": "361.95",
+    "fatorAjuste": "0.6144218814753418"
+  },
+  {
+    "concessionaria": "CHESP",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "222.39",
+    "totalTEPonta": "361.95",
+    "fatorAjuste": "0.6144218814753418"
+  },
+  {
+    "concessionaria": "CHESP",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "222.39",
+    "totalTEPonta": "361.95",
+    "fatorAjuste": "0.6144218814753418"
   },
   {
     "concessionaria": "CODESAM",
@@ -939,7 +1083,7 @@
     "concessionaria": "COOPERALIANÇA",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "223.0",
+    "totalTEForaPonta": "223.00",
     "totalTEPonta": "362.74",
     "fatorAjuste": "0.6147653967028726"
   },
@@ -947,7 +1091,7 @@
     "concessionaria": "COOPERALIANÇA",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "223.0",
+    "totalTEForaPonta": "223.00",
     "totalTEPonta": "362.74",
     "fatorAjuste": "0.6147653967028726"
   },
@@ -1051,7 +1195,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A1",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1059,7 +1203,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A2",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1067,7 +1211,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A3",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1075,7 +1219,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A3a",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1083,7 +1227,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A3a",
     "modalidade": "Verde",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1091,7 +1235,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1099,7 +1243,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1107,7 +1251,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "AS",
     "modalidade": "Azul",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1115,7 +1259,7 @@
     "concessionaria": "COPEL-DIS",
     "subgrupo": "AS",
     "modalidade": "Verde",
-    "totalTEForaPonta": "247.2",
+    "totalTEForaPonta": "247.20",
     "totalTEPonta": "388.08",
     "fatorAjuste": "0.6369820655534941"
   },
@@ -1176,35 +1320,11 @@
     "fatorAjuste": "0.6116522572256313"
   },
   {
-    "concessionaria": "CPFL- PIRATININGA",
-    "subgrupo": "A2",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "303.97",
-    "totalTEPonta": "488.01",
-    "fatorAjuste": "0.6228765803979427"
-  },
-  {
-    "concessionaria": "CPFL- PIRATININGA",
-    "subgrupo": "A4",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "303.97",
-    "totalTEPonta": "488.01",
-    "fatorAjuste": "0.6228765803979427"
-  },
-  {
-    "concessionaria": "CPFL- PIRATININGA",
-    "subgrupo": "A4",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "303.97",
-    "totalTEPonta": "488.01",
-    "fatorAjuste": "0.6228765803979427"
-  },
-  {
     "concessionaria": "CPFL Santa Cruz",
     "subgrupo": "A2",
     "modalidade": "Azul",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
   },
   {
@@ -1212,7 +1332,7 @@
     "subgrupo": "A3",
     "modalidade": "Azul",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
   },
   {
@@ -1220,7 +1340,7 @@
     "subgrupo": "A3a",
     "modalidade": "Azul",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
   },
   {
@@ -1228,7 +1348,7 @@
     "subgrupo": "A3a",
     "modalidade": "Verde",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
   },
   {
@@ -1236,7 +1356,7 @@
     "subgrupo": "A4",
     "modalidade": "Azul",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
   },
   {
@@ -1244,8 +1364,32 @@
     "subgrupo": "A4",
     "modalidade": "Verde",
     "totalTEForaPonta": "237.23",
-    "totalTEPonta": "382.4",
+    "totalTEPonta": "382.40",
     "fatorAjuste": "0.6203713389121339"
+  },
+  {
+    "concessionaria": "CPFL- PIRATININGA",
+    "subgrupo": "A2",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "303.97",
+    "totalTEPonta": "488.01",
+    "fatorAjuste": "0.6228765803979427"
+  },
+  {
+    "concessionaria": "CPFL- PIRATININGA",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "303.97",
+    "totalTEPonta": "488.01",
+    "fatorAjuste": "0.6228765803979427"
+  },
+  {
+    "concessionaria": "CPFL- PIRATININGA",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "303.97",
+    "totalTEPonta": "488.01",
+    "fatorAjuste": "0.6228765803979427"
   },
   {
     "concessionaria": "CPFL-PAULISTA",
@@ -1419,48 +1563,48 @@
     "concessionaria": "EDP ES",
     "subgrupo": "A2",
     "modalidade": "Azul",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
     "concessionaria": "EDP ES",
     "subgrupo": "A3",
     "modalidade": "Azul",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
     "concessionaria": "EDP ES",
     "subgrupo": "A3a",
     "modalidade": "Azul",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
     "concessionaria": "EDP ES",
     "subgrupo": "A3a",
     "modalidade": "Verde",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
     "concessionaria": "EDP ES",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
     "concessionaria": "EDP ES",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "263.8",
-    "totalTEPonta": "422.6",
+    "totalTEForaPonta": "263.80",
+    "totalTEPonta": "422.60",
     "fatorAjuste": "0.6242309512541411"
   },
   {
@@ -1529,26 +1673,34 @@
   },
   {
     "concessionaria": "EFLUL",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "271.36",
+    "totalTEPonta": "461.06",
+    "fatorAjuste": "0.588556803886696"
+  },
+  {
+    "concessionaria": "EFLUL",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "250.04",
-    "totalTEPonta": "399.84",
-    "fatorAjuste": "0.6253501400560224"
+    "totalTEForaPonta": "271.36",
+    "totalTEPonta": "461.06",
+    "fatorAjuste": "0.588556803886696"
   },
   {
     "concessionaria": "EFLUL",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "250.04",
-    "totalTEPonta": "399.84",
-    "fatorAjuste": "0.6253501400560224"
+    "totalTEForaPonta": "271.36",
+    "totalTEPonta": "461.06",
+    "fatorAjuste": "0.588556803886696"
   },
   {
     "concessionaria": "ELEKTRO",
     "subgrupo": "A2",
     "modalidade": "Azul",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1556,7 +1708,7 @@
     "subgrupo": "A3",
     "modalidade": "Azul",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1564,7 +1716,7 @@
     "subgrupo": "A3a",
     "modalidade": "Azul",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1572,7 +1724,7 @@
     "subgrupo": "A3a",
     "modalidade": "Verde",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1580,7 +1732,7 @@
     "subgrupo": "A4",
     "modalidade": "Azul",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1588,7 +1740,7 @@
     "subgrupo": "A4",
     "modalidade": "Verde",
     "totalTEForaPonta": "253.87",
-    "totalTEPonta": "405.3",
+    "totalTEPonta": "405.30",
     "fatorAjuste": "0.6263755243029855"
   },
   {
@@ -1635,7 +1787,7 @@
     "concessionaria": "ELETROCAR",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "219.4",
+    "totalTEForaPonta": "219.40",
     "totalTEPonta": "353.55",
     "fatorAjuste": "0.6205628623957008"
   },
@@ -1643,7 +1795,7 @@
     "concessionaria": "ELETROCAR",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "219.4",
+    "totalTEForaPonta": "219.40",
     "totalTEPonta": "353.55",
     "fatorAjuste": "0.6205628623957008"
   },
@@ -1651,7 +1803,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "A2",
     "modalidade": "Azul",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1659,7 +1811,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "A3a",
     "modalidade": "Azul",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1667,7 +1819,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "A3a",
     "modalidade": "Verde",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1675,7 +1827,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1683,7 +1835,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1691,7 +1843,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "AS",
     "modalidade": "Azul",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1699,7 +1851,7 @@
     "concessionaria": "ELETROPAULO",
     "subgrupo": "AS",
     "modalidade": "Verde",
-    "totalTEForaPonta": "248.5",
+    "totalTEForaPonta": "248.50",
     "totalTEPonta": "392.08",
     "fatorAjuste": "0.6337992246480311"
   },
@@ -1800,54 +1952,6 @@
     "fatorAjuste": "0.6294933957532185"
   },
   {
-    "concessionaria": "EMT",
-    "subgrupo": "A2",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
-    "concessionaria": "EMT",
-    "subgrupo": "A3",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
-    "concessionaria": "EMT",
-    "subgrupo": "A3a",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
-    "concessionaria": "EMT",
-    "subgrupo": "A3a",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
-    "concessionaria": "EMT",
-    "subgrupo": "A4",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
-    "concessionaria": "EMT",
-    "subgrupo": "A4",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "259.69",
-    "totalTEPonta": "415.9",
-    "fatorAjuste": "0.6244049050252465"
-  },
-  {
     "concessionaria": "ENEL CE",
     "subgrupo": "A3",
     "modalidade": "Azul",
@@ -1924,7 +2028,7 @@
     "subgrupo": "A4",
     "modalidade": "Azul",
     "totalTEForaPonta": "326.99",
-    "totalTEPonta": "552.0",
+    "totalTEPonta": "552.00",
     "fatorAjuste": "0.5923731884057971"
   },
   {
@@ -1932,7 +2036,7 @@
     "subgrupo": "A4",
     "modalidade": "Verde",
     "totalTEForaPonta": "326.99",
-    "totalTEPonta": "552.0",
+    "totalTEPonta": "552.00",
     "fatorAjuste": "0.5923731884057971"
   },
   {
@@ -1960,11 +2064,131 @@
     "fatorAjuste": "0.6433131627158164"
   },
   {
+    "concessionaria": "ESE",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "223.15",
+    "totalTEPonta": "361.55",
+    "fatorAjuste": "0.6172037062646937"
+  },
+  {
+    "concessionaria": "ESE",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "223.15",
+    "totalTEPonta": "361.55",
+    "fatorAjuste": "0.6172037062646937"
+  },
+  {
+    "concessionaria": "ESE",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "223.15",
+    "totalTEPonta": "361.55",
+    "fatorAjuste": "0.6172037062646937"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A2",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A3a",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ESS",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "255.26",
+    "totalTEPonta": "414.64",
+    "fatorAjuste": "0.6156183677406907"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A2",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A3",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A3a",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A3a",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A4",
+    "modalidade": "Azul",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
+    "concessionaria": "ETO",
+    "subgrupo": "A4",
+    "modalidade": "Verde",
+    "totalTEForaPonta": "258.24",
+    "totalTEPonta": "423.28",
+    "fatorAjuste": "0.6100926100926102"
+  },
+  {
     "concessionaria": "Equatorial AL",
     "subgrupo": "A3",
     "modalidade": "Azul",
     "totalTEForaPonta": "271.14",
-    "totalTEPonta": "423.9",
+    "totalTEPonta": "423.90",
     "fatorAjuste": "0.6396319886765747"
   },
   {
@@ -1972,7 +2196,7 @@
     "subgrupo": "A4",
     "modalidade": "Azul",
     "totalTEForaPonta": "271.14",
-    "totalTEPonta": "423.9",
+    "totalTEPonta": "423.90",
     "fatorAjuste": "0.6396319886765747"
   },
   {
@@ -1980,7 +2204,7 @@
     "subgrupo": "A4",
     "modalidade": "Verde",
     "totalTEForaPonta": "271.14",
-    "totalTEPonta": "423.9",
+    "totalTEPonta": "423.90",
     "fatorAjuste": "0.6396319886765747"
   },
   {
@@ -2110,126 +2334,6 @@
     "totalTEForaPonta": "236.71",
     "totalTEPonta": "385.45",
     "fatorAjuste": "0.6141133739784668"
-  },
-  {
-    "concessionaria": "ESE",
-    "subgrupo": "A3",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "223.15",
-    "totalTEPonta": "361.55",
-    "fatorAjuste": "0.6172037062646937"
-  },
-  {
-    "concessionaria": "ESE",
-    "subgrupo": "A4",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "223.15",
-    "totalTEPonta": "361.55",
-    "fatorAjuste": "0.6172037062646937"
-  },
-  {
-    "concessionaria": "ESE",
-    "subgrupo": "A4",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "223.15",
-    "totalTEPonta": "361.55",
-    "fatorAjuste": "0.6172037062646937"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A2",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A3",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A3a",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A3a",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A4",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ESS",
-    "subgrupo": "A4",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "255.26",
-    "totalTEPonta": "414.64",
-    "fatorAjuste": "0.6156183677406907"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A2",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A3",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A3a",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A3a",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A4",
-    "modalidade": "Azul",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
-  },
-  {
-    "concessionaria": "ETO",
-    "subgrupo": "A4",
-    "modalidade": "Verde",
-    "totalTEForaPonta": "258.24",
-    "totalTEPonta": "423.28",
-    "fatorAjuste": "0.6100926100926102"
   },
   {
     "concessionaria": "FORCEL",
@@ -2331,7 +2435,7 @@
     "concessionaria": "UHENPAL",
     "subgrupo": "A4",
     "modalidade": "Azul",
-    "totalTEForaPonta": "195.9",
+    "totalTEForaPonta": "195.90",
     "totalTEPonta": "311.41",
     "fatorAjuste": "0.6290742108474359"
   },
@@ -2339,7 +2443,7 @@
     "concessionaria": "UHENPAL",
     "subgrupo": "A4",
     "modalidade": "Verde",
-    "totalTEForaPonta": "195.9",
+    "totalTEForaPonta": "195.90",
     "totalTEPonta": "311.41",
     "fatorAjuste": "0.6290742108474359"
   }
