@@ -1,25 +1,118 @@
-html,
-body,
-div.app {
-  height: 100%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * ============================================================================
+ *  DESIGN TOKENS — esquema de cores do site
+ * ============================================================================
+ *  Para trocar a identidade visual inteira, edite SOMENTE os valores HSL abaixo.
+ *  Todos os componentes derivam destas variáveis (via tailwind.config.js).
+ *  Formato: H S% L%  (sem vírgulas, sem hsl()).
+ * ----------------------------------------------------------------------------
+ */
+@layer base {
+  :root {
+    /* Marca (verde/esmeralda — energia solar). Troque estes 4 para reposicionar a marca. */
+    --brand: 152 60% 36%;
+    --brand-foreground: 0 0% 100%;
+
+    /* Superfícies */
+    --background: 0 0% 100%;
+    --foreground: 158 24% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 158 24% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 24% 10%;
+
+    /* Primária = marca */
+    --primary: var(--brand);
+    --primary-foreground: var(--brand-foreground);
+
+    /* Secundária / silenciada / acento */
+    --secondary: 152 30% 96%;
+    --secondary-foreground: 152 45% 20%;
+
+    --muted: 150 12% 96%;
+    --muted-foreground: 155 10% 40%;
+
+    --accent: 152 40% 94%;
+    --accent-foreground: 152 45% 20%;
+
+    /* Destrutivo (erros) */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Bordas, inputs, foco */
+    --border: 150 14% 90%;
+    --input: 150 14% 90%;
+    --ring: var(--brand);
+
+    /* Raio base dos cantos */
+    --radius: 0.75rem;
+
+    /* Cores auxiliares de gráficos/badges (opcional) */
+    --chart-1: 152 60% 36%;
+    --chart-2: 199 89% 48%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 160 28% 7%;
+    --foreground: 150 16% 96%;
+
+    --card: 160 26% 9%;
+    --card-foreground: 150 16% 96%;
+
+    --popover: 160 26% 9%;
+    --popover-foreground: 150 16% 96%;
+
+    --brand: 152 52% 46%;
+    --brand-foreground: 160 40% 6%;
+
+    --primary: var(--brand);
+    --primary-foreground: var(--brand-foreground);
+
+    --secondary: 158 18% 16%;
+    --secondary-foreground: 150 16% 96%;
+
+    --muted: 158 16% 16%;
+    --muted-foreground: 150 10% 64%;
+
+    --accent: 158 20% 18%;
+    --accent-foreground: 150 16% 96%;
+
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 158 14% 20%;
+    --input: 158 14% 22%;
+    --ring: var(--brand);
+  }
 }
 
-div#root {
-  min-height: 100%;
-  background-color: #f5f5f5;
-}
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  /* Foco visível e acessível em toda a aplicação */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
 }
