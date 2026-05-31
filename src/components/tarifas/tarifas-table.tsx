@@ -1,8 +1,6 @@
-import { useState } from "react";
 import {
   type Column,
   type ColumnDef,
-  type SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -80,13 +78,10 @@ const columns: ColumnDef<Tarifa>[] = [
 ];
 
 export function TarifasTable({ data }: { data: Tarifa[] }) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-
+  // A ordenação é gerida pelo estado interno do TanStack Table (sem useState).
   const table = useReactTable({
     data,
     columns,
-    state: { sorting },
-    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

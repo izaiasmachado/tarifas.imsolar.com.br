@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -54,12 +53,13 @@ const WHATSAPP = import.meta.env.VITE_WHATSAPP;
 const CONTACT_EMAIL = "contato@imsolar.com.br";
 
 export function ReportarPage() {
-  const [sent, setSent] = useState(false);
-
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { tipo: "erro", nome: "", email: "", mensagem: "" },
   });
+
+  // O sucesso do envio é derivado do estado do form, não de um useState.
+  const { isSubmitSuccessful } = form.formState;
 
   const onSubmit = async (values: FormValues) => {
     const subject = `[Tarifas IM Solar] ${TIPO_LABEL[values.tipo]}`;
@@ -73,7 +73,6 @@ export function ReportarPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...values, subject }),
         });
-        setSent(true);
         return;
       } catch {
         /* cai no fallback de e-mail abaixo */
@@ -84,7 +83,6 @@ export function ReportarPage() {
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
   };
 
   return (
@@ -106,7 +104,7 @@ export function ReportarPage() {
       />
 
       <div className="container max-w-2xl py-8">
-        {sent ? (
+        {isSubmitSuccessful ? (
           <Card>
             <CardContent className="flex flex-col items-center gap-3 py-12 text-center">
               <CheckCircle2 className="h-12 w-12 text-primary" />
@@ -116,13 +114,7 @@ export function ReportarPage() {
                 confirme o envio na janela que abrimos. Retornaremos assim que
                 possível.
               </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  form.reset();
-                  setSent(false);
-                }}
-              >
+              <Button variant="outline" onClick={() => form.reset()}>
                 Enviar outra mensagem
               </Button>
             </CardContent>

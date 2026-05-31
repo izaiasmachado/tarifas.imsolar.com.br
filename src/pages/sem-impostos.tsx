@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useForm } from "react-hook-form";
 import { Search } from "lucide-react";
 
 import { DATA_PATHS } from "@/lib/data";
@@ -6,9 +7,10 @@ import { SITE } from "@/lib/site";
 import type { Tarifa } from "@/lib/types";
 import { useDataset } from "@/hooks/use-dataset";
 import {
-  useCascadingFilters,
+  resolveCascadingFilters,
+  defaultFilterValues,
   type FilterDef,
-} from "@/hooks/use-cascading-filters";
+} from "@/lib/cascading-filters";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
@@ -23,14 +25,37 @@ const FILTERS: FilterDef<Tarifa>[] = [
   { key: "modalidade", label: "Modalidade" },
 ];
 
+interface FormValues {
+  concessionaria: string;
+  subgrupo: string;
+  modalidade: string;
+  search: string;
+}
+
 export function SemImpostosPage() {
-  const { data, loading, error } = useDataset<Tarifa[]>(DATA_PATHS.tarifas);
+  const { data, isLoading, isError, error } = useDataset<Tarifa[]>(
+    DATA_PATHS.tarifas
+  );
   const rows = useMemo(() => data ?? [], [data]);
 
-  const { filters, filtered, setFilter, clear, activeCount } =
-    useCascadingFilters(rows, FILTERS);
+  // O estado dos filtros e da busca vive no react-hook-form.
+  const form = useForm<FormValues>({
+    defaultValues: {
+      ...defaultFilterValues(FILTERS),
+      search: "",
+    } as FormValues,
+  });
+  const { concessionaria, subgrupo, modalidade, search } = form.watch();
 
-  const [search, setSearch] = useState("");
+  const { filters, filtered, activeCount } = useMemo(
+    () =>
+      resolveCascadingFilters(rows, FILTERS, {
+        concessionaria,
+        subgrupo,
+        modalidade,
+      }),
+    [rows, concessionaria, subgrupo, modalidade]
+  );
 
   const searched = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -69,36 +94,38 @@ export function SemImpostosPage() {
               placeholder="Buscar concessionária, classe…"
               className="pl-9"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => form.setValue("search", e.target.value)}
               aria-label="Buscar nas tarifas"
             />
           </div>
         </div>
 
-        {loading && (
+        {isLoading && (
           <div className="space-y-4">
             <Skeleton className="h-32 w-full" />
             <Skeleton className="h-96 w-full" />
           </div>
         )}
 
-        {error && (
+        {isError && (
           <div className="rounded-xl border border-destructive/50 bg-destructive/5 p-6 text-center">
             <p className="font-medium text-destructive">
               Não foi possível carregar as tarifas.
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Tente recarregar a página. ({error})
+              Tente recarregar a página. ({error?.message})
             </p>
           </div>
         )}
 
-        {!loading && !error && (
+        {!isLoading && !isError && (
           <>
             <FilterBar
               filters={filters}
-              onChange={setFilter}
-              onClear={clear}
+              onChange={(key, value) =>
+                form.setValue(key as keyof FormValues, value)
+              }
+              onClear={() => form.reset()}
               activeCount={activeCount}
             />
             <TarifasTable data={searched} />

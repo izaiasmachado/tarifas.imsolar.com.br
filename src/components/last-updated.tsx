@@ -9,9 +9,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 /** Selo "Tarifas atualizadas em …" alimentado por /data/meta.json. */
 export function LastUpdated({ className }: { className?: string }) {
-  const { data, loading } = useDataset<DatasetMeta>(DATA_PATHS.meta);
+  const { data, isLoading } = useDataset<DatasetMeta>(DATA_PATHS.meta);
 
-  if (loading) return <Skeleton className={cn("h-6 w-56", className)} />;
+  if (isLoading) return <Skeleton className={cn("h-6 w-56", className)} />;
   if (!data) return null;
 
   return (

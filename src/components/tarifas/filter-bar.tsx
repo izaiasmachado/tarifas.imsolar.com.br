@@ -3,7 +3,7 @@ import { FilterX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { Label } from "@/components/ui/label";
-import type { ResolvedFilter } from "@/hooks/use-cascading-filters";
+import type { ResolvedFilter } from "@/lib/cascading-filters";
 
 interface FilterBarProps<T> {
   filters: ResolvedFilter<T>[];

@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useForm } from "react-hook-form";
 import { Calculator, Info, Zap } from "lucide-react";
 
 import { DATA_PATHS, SHOW_ALL } from "@/lib/data";
@@ -6,9 +7,10 @@ import { formatBRL, formatFator, formatNumber } from "@/lib/format";
 import type { FatorAjuste } from "@/lib/types";
 import { useDataset } from "@/hooks/use-dataset";
 import {
-  useCascadingFilters,
+  resolveCascadingFilters,
+  defaultFilterValues,
   type FilterDef,
-} from "@/hooks/use-cascading-filters";
+} from "@/lib/cascading-filters";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Combobox } from "@/components/ui/combobox";
 import { Input } from "@/components/ui/input";
@@ -23,6 +25,14 @@ const FILTERS: FilterDef<FatorAjuste>[] = [
   { key: "subgrupo", label: "Subgrupo" },
   { key: "modalidade", label: "Modalidade" },
 ];
+
+interface FormValues {
+  concessionaria: string;
+  subgrupo: string;
+  modalidade: string;
+  consumoPonta: string;
+  consumoForaPonta: string;
+}
 
 interface Result {
   teForaPonta: number;
@@ -53,29 +63,35 @@ function compute(
 }
 
 export function FatorAjustePage() {
-  const { data, loading } = useDataset<FatorAjuste[]>(DATA_PATHS.fatorAjuste);
+  const { data, isLoading } = useDataset<FatorAjuste[]>(DATA_PATHS.fatorAjuste);
   const rows = useMemo(() => data ?? [], [data]);
 
-  const { filters, filtered, setFilter, clear } = useCascadingFilters(
-    rows,
-    FILTERS
-  );
+  // Filtros e consumo vivem no react-hook-form; o resultado é derivado.
+  const form = useForm<FormValues>({
+    defaultValues: {
+      ...defaultFilterValues(FILTERS),
+      consumoPonta: "",
+      consumoForaPonta: "",
+    } as FormValues,
+  });
+  const values = form.watch();
 
-  const [consumoPonta, setConsumoPonta] = useState("");
-  const [consumoForaPonta, setConsumoForaPonta] = useState("");
+  const { filters, filtered } = useMemo(
+    () =>
+      resolveCascadingFilters(rows, FILTERS, {
+        concessionaria: values.concessionaria,
+        subgrupo: values.subgrupo,
+        modalidade: values.modalidade,
+      }),
+    [rows, values.concessionaria, values.subgrupo, values.modalidade]
+  );
 
   const selectedRow = filtered.length === 1 ? filtered[0] : undefined;
   const result = compute(
     selectedRow,
-    Number(consumoPonta) || 0,
-    Number(consumoForaPonta) || 0
+    Number(values.consumoPonta) || 0,
+    Number(values.consumoForaPonta) || 0
   );
-
-  const handleClear = () => {
-    clear();
-    setConsumoPonta("");
-    setConsumoForaPonta("");
-  };
 
   const outputs = [
     {
@@ -125,7 +141,7 @@ export function FatorAjustePage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {loading ? (
+            {isLoading ? (
               <div className="space-y-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Skeleton key={i} className="h-9 w-full" />
@@ -142,7 +158,12 @@ export function FatorAjustePage() {
                         id={id}
                         aria-label={filter.label}
                         value={filter.value}
-                        onChange={(value) => setFilter(filter.key, value)}
+                        onChange={(value) =>
+                          form.setValue(
+                            filter.key as keyof FormValues,
+                            value
+                          )
+                        }
                         options={filter.options.map((o) => ({
                           value: o,
                           label: o === SHOW_ALL ? "Selecione…" : o,
@@ -164,8 +185,10 @@ export function FatorAjustePage() {
                       min="0"
                       placeholder="0"
                       className="pr-12"
-                      value={consumoPonta}
-                      onChange={(e) => setConsumoPonta(e.target.value)}
+                      value={values.consumoPonta}
+                      onChange={(e) =>
+                        form.setValue("consumoPonta", e.target.value)
+                      }
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                       kWh
@@ -185,8 +208,10 @@ export function FatorAjustePage() {
                       min="0"
                       placeholder="0"
                       className="pr-12"
-                      value={consumoForaPonta}
-                      onChange={(e) => setConsumoForaPonta(e.target.value)}
+                      value={values.consumoForaPonta}
+                      onChange={(e) =>
+                        form.setValue("consumoForaPonta", e.target.value)
+                      }
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                       kWh
@@ -196,7 +221,7 @@ export function FatorAjustePage() {
 
                 <Button
                   variant="outline"
-                  onClick={handleClear}
+                  onClick={() => form.reset()}
                   className="w-full"
                 >
                   Limpar campos
@@ -214,7 +239,7 @@ export function FatorAjustePage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {!selectedRow && !loading && (
+            {!selectedRow && !isLoading && (
               <div className="flex items-start gap-2 rounded-lg bg-muted/50 p-3 text-sm text-muted-foreground">
                 <Info className="mt-0.5 h-4 w-4 shrink-0" />
                 Selecione concessionária, subgrupo e modalidade para ver o fator
