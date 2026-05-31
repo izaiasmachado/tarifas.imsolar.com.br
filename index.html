@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/img/meter-40.png" />
+    <link rel="apple-touch-icon" href="/img/meter-80.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f9d63" />
+
+    <!-- Prevenção de flash de tema (FOUC) -->
+    <script>
+      (function () {
+        try {
+          var k = "imsolar-theme";
+          var s = localStorage.getItem(k);
+          var sys = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (s === "dark" || ((!s || s === "system") && sys)) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- SEO base (sobrescrito por rota via react-helmet-async) -->
+    <title>Tarifas de Energia Elétrica do Brasil | IM Solar</title>
+    <meta
+      name="description"
+      content="Ferramentas gratuitas para profissionais de energia solar: tabela de tarifas de energia sem impostos por concessionária e calculadora de fator de ajuste TE do Grupo A, com dados da ANEEL."
+    />
+    <meta
+      name="keywords"
+      content="tarifas de energia, tarifa sem impostos, ANEEL, TUSD, TE, TUSD Fio B, fator de ajuste, grupo A, tarifa branca, concessionária, distribuidora, energia solar, geração distribuída, energia elétrica, Brasil"
+    />
+    <meta name="author" content="IM Solar" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://tarifas.imsolar.com.br/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Tarifas IM Solar" />
+    <meta
+      property="og:title"
+      content="Tarifas de Energia Elétrica do Brasil | IM Solar"
+    />
+    <meta
+      property="og:description"
+      content="Tabela de tarifas sem impostos por concessionária e calculadora de fator de ajuste TE do Grupo A, com dados da ANEEL."
+    />
+    <meta property="og:url" content="https://tarifas.imsolar.com.br/" />
+    <meta property="og:image" content="https://tarifas.imsolar.com.br/img/meter-80.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Tarifas de Energia Elétrica do Brasil | IM Solar"
+    />
+    <meta
+      name="twitter:description"
+      content="Ferramentas gratuitas de tarifas de energia com dados da ANEEL."
+    />
+    <meta name="twitter:image" content="https://tarifas.imsolar.com.br/img/meter-80.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0KXMPCL8PZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-0KXMPCL8PZ");
+    </script>
+
+    <!-- JSON-LD: Organização + site (dados estruturados para busca) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Tarifas IM Solar",
+        "url": "https://tarifas.imsolar.com.br/",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@type": "Organization",
+          "name": "IM Solar",
+          "url": "https://imsolar.com.br"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>Você precisa habilitar o JavaScript para usar esta aplicação.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
