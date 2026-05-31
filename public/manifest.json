@@ -1,12 +1,8 @@
 {
-  "short_name": "Ferramentas | IM Solar",
-  "name": "Ferramentas de Tarifação de Energia Elétrica",
+  "short_name": "Tarifas IM Solar",
+  "name": "Tarifas de Energia Elétrica do Brasil | IM Solar",
+  "description": "Tabela de tarifas de energia sem impostos e calculadora de fator de ajuste TE do Grupo A, com dados da ANEEL.",
   "icons": [
-    {
-      "src": "img/meter-40.png",
-      "sizes": "40x40",
-      "type": "image/x-icon"
-    },
     {
       "src": "img/meter-80.png",
       "type": "image/png",
@@ -23,8 +19,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1f9d63",
+  "background_color": "#ffffff",
+  "lang": "pt-BR"
 }
