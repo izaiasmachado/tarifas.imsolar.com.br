@@ -1,0 +1,8 @@
+{
+  "updatedAt": "2025-01-24",
+  "vigenciaInicio": null,
+  "fonte": "ANEEL — Tarifas homologadas das distribuidoras de energia elétrica (Dados Abertos)",
+  "fonteUrl": "https://dadosabertos.aneel.gov.br/dataset/tarifas-distribuidoras-energia-eletrica",
+  "totalRegistros": 6640,
+  "observacao": "Dados importados da base anterior do projeto. Próxima atualização será gerada pelo script scripts/aneel/fetch_tarifas.py."
+}
