@@ -20,6 +20,27 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataSource } from "@/components/data-source";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
+
+const FAQ: QA[] = [
+  {
+    q: "Como é estimada a economia com energia solar?",
+    a: "Multiplicamos o seu consumo compensado pela tarifa de energia sem impostos da concessionária, chegando à economia mensal e anual. O tempo de retorno (payback) é o custo estimado do sistema dividido por essa economia.",
+  },
+  {
+    q: "O que é payback?",
+    a: "É o tempo necessário para que a economia gerada pela energia solar pague o investimento inicial. Em sistemas residenciais no Brasil, costuma ficar entre 4 e 7 anos, enquanto os painéis têm vida útil de 25 anos ou mais.",
+  },
+  {
+    q: "A economia real pode ser diferente?",
+    a: "Sim. A economia depende da geração efetiva, das regras de compensação (Lei 14.300/2022), do custo de disponibilidade e de eventuais reajustes tarifários. Esta é uma estimativa para planejamento, não uma garantia.",
+  },
+];
 
 const GRUPO_B = ["B1", "B2", "B3", "B4"];
 
@@ -105,10 +126,13 @@ export function EconomiaSolarPage() {
           "quanto economizo com solar",
           "ANEEL",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Economia com solar", path: "/economia-solar" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Economia com solar", path: "/economia-solar" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -284,7 +308,28 @@ export function EconomiaSolarPage() {
         </Card>
       </div>
 
-      <div className="container pb-8">
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="Como a energia solar gera economia">
+          <p>
+            Um sistema solar reduz a energia que você compra da distribuidora: o
+            que o sistema gera abate o seu consumo, e o excedente vira créditos
+            para os meses seguintes. A economia, em reais, é o consumo compensado
+            multiplicado pela tarifa de energia — por isso, quanto mais cara a
+            tarifa da sua concessionária, maior o retorno.
+          </p>
+          <p>
+            O <strong>payback</strong> é o tempo para a economia acumulada pagar o
+            investimento. Depois disso, a energia gerada é praticamente gratuita
+            pelo resto da vida útil do sistema (25 anos ou mais). Esta calculadora
+            dá uma estimativa a partir do seu consumo, da concessionária e do
+            custo do sistema.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
+
         <DataSource />
       </div>
     </>

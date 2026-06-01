@@ -19,6 +19,27 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataSource } from "@/components/data-source";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
+
+const FAQ: QA[] = [
+  {
+    q: "Como o ranking é calculado?",
+    a: "Ordenamos as concessionárias pela tarifa sem impostos (TUSD, TE ou a soma das duas) do subgrupo, modalidade e posto escolhidos, da mais cara para a mais barata. Os valores vêm das Tarifas Homologadas da ANEEL.",
+  },
+  {
+    q: "Por que as tarifas variam tanto entre concessionárias?",
+    a: "Cada distribuidora tem custos próprios de operação, perdas, investimentos na rede e características da área atendida. A ANEEL homologa as tarifas em processos de reajuste e revisão específicos para cada empresa, o que gera diferenças expressivas pelo país.",
+  },
+  {
+    q: "O ranking considera impostos?",
+    a: "Não. Como o ICMS varia por estado, o ranking usa a tarifa sem impostos para permitir uma comparação justa entre concessionárias de regiões diferentes.",
+  },
+];
 
 const METRICS: { value: Metric; label: string }[] = [
   { value: "total", label: "TUSD + TE (tarifa total)" },
@@ -85,10 +106,13 @@ export function RankingPage() {
           "TE",
           "ANEEL",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Ranking de tarifas", path: "/ranking" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Ranking de tarifas", path: "/ranking" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -200,6 +224,29 @@ export function RankingPage() {
         )}
 
         <DataSource />
+      </div>
+
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="O que o ranking de tarifas mostra">
+          <p>
+            Este ranking organiza as concessionárias de energia do Brasil pela
+            tarifa sem impostos, permitindo ver rapidamente quem cobra mais e
+            quem cobra menos em cada <strong>subgrupo</strong> e{" "}
+            <strong>modalidade</strong>. Você pode ordenar pela{" "}
+            <strong>tarifa total</strong> (TUSD + TE), só pela{" "}
+            <strong>TE</strong>, só pela <strong>TUSD</strong> ou pela{" "}
+            <strong>TUSD Fio B</strong>.
+          </p>
+          <p>
+            É uma forma transparente de entender o quanto a localização influencia
+            o custo da energia no país — diferenças que impactam diretamente o
+            retorno de projetos de eficiência e de geração própria.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
       </div>
     </>
   );

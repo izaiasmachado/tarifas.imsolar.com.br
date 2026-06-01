@@ -31,6 +31,27 @@ import {
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataSource } from "@/components/data-source";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
+
+const FAQ: QA[] = [
+  {
+    q: "Como funciona o comparador de concessionárias?",
+    a: "Você escolhe duas ou mais concessionárias e o subgrupo/modalidade desejado, e a ferramenta mostra a TUSD, a TE e a TUSD Fio B de cada uma lado a lado, com os valores sem impostos homologados pela ANEEL.",
+  },
+  {
+    q: "Para que serve comparar tarifas entre concessionárias?",
+    a: "É útil para empresas com unidades em diferentes regiões, para estudos de viabilidade e para entender o peso da distribuidora no custo final da energia. Como a comparação é sem impostos, ela isola o efeito da tarifa em si.",
+  },
+  {
+    q: "Posso comparar concessionárias de estados diferentes?",
+    a: "Sim. Justamente por usar valores sem impostos, a comparação é justa mesmo entre estados com ICMS diferente.",
+  },
+];
 
 interface FormValues {
   subgrupo: string;
@@ -106,10 +127,13 @@ export function CompararPage() {
           "TUSD Fio B",
           "ANEEL",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Comparador de tarifas", path: "/comparar" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Comparador de tarifas", path: "/comparar" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -253,6 +277,28 @@ export function CompararPage() {
         )}
 
         <DataSource />
+      </div>
+
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="Comparando tarifas entre concessionárias">
+          <p>
+            Cada distribuidora de energia do Brasil tem a sua própria tabela de
+            tarifas, homologada pela ANEEL. Este comparador coloca as
+            concessionárias <strong>lado a lado</strong> nos três componentes que
+            mais importam — <strong>TUSD</strong> (uso da rede),{" "}
+            <strong>TE</strong> (energia) e <strong>TUSD Fio B</strong> (base da
+            compensação solar) — sempre sem impostos.
+          </p>
+          <p>
+            Assim fica fácil enxergar o quanto a escolha da região, ou a presença
+            de uma unidade em determinada área de concessão, pesa no custo da
+            energia.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
       </div>
     </>
   );

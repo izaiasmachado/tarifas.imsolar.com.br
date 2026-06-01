@@ -18,11 +18,36 @@ import { PageHeader } from "@/components/layout/page-header";
 import { LastUpdated } from "@/components/last-updated";
 import { FilterBar } from "@/components/tarifas/filter-bar";
 import { TarifasTable } from "@/components/tarifas/tarifas-table";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
 
 const FILTERS: FilterDef<Tarifa>[] = [
   { key: "concessionaria", label: "Concessionária" },
   { key: "subgrupo", label: "Subgrupo" },
   { key: "modalidade", label: "Modalidade" },
+];
+
+const FAQ: QA[] = [
+  {
+    q: "O que é tarifa de energia sem impostos?",
+    a: "É o valor da tarifa (TUSD + TE) antes da incidência de tributos como ICMS, PIS e COFINS. Como os impostos variam por estado e situação do cliente, a tarifa sem impostos é a base mais justa para comparar concessionárias e dimensionar projetos de energia.",
+  },
+  {
+    q: "Qual a diferença entre TUSD e TE?",
+    a: "A TUSD (Tarifa de Uso do Sistema de Distribuição) remunera o transporte da energia pela rede; a TE (Tarifa de Energia) corresponde à energia consumida. A soma das duas é a tarifa de aplicação sem impostos.",
+  },
+  {
+    q: "O que é TUSD Fio B?",
+    a: "É a parcela da TUSD ligada à distribuição local. Ela é a referência para o pagamento gradual pelo uso da rede na geração distribuída (sistemas solares), conforme a Lei 14.300/2022.",
+  },
+  {
+    q: "Os valores estão atualizados?",
+    a: "Sim. Os dados vêm das Tarifas Homologadas das Distribuidoras da ANEEL (Dados Abertos) e a data da última atualização é exibida no topo da página. Ainda assim, confirme sempre na conta e com a concessionária.",
+  },
 ];
 
 interface FormValues {
@@ -85,10 +110,13 @@ export function SemImpostosPage() {
           "grupo A",
           "grupo B",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Tarifas sem impostos", path: "/sem-impostos" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Tarifas sem impostos", path: "/sem-impostos" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -147,6 +175,32 @@ export function SemImpostosPage() {
           Fonte: {SITE.name} a partir dos dados abertos da ANEEL. Os valores são
           informativos e não dispensam a consulta oficial à concessionária.
         </p>
+      </div>
+
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="Entenda as tarifas de energia sem impostos">
+          <p>
+            A tarifa que aparece na sua conta de luz reúne vários componentes. As
+            duas parcelas principais, antes dos impostos, são a{" "}
+            <strong>TUSD</strong> (uso da rede de distribuição) e a{" "}
+            <strong>TE</strong> (a energia em si). Esta tabela mostra esses
+            valores homologados pela ANEEL para cada concessionária, separados por{" "}
+            <strong>subgrupo</strong> (nível de tensão) e{" "}
+            <strong>modalidade</strong> (convencional, branca, azul, verde).
+          </p>
+          <p>
+            Trabalhar com a tarifa <strong>sem impostos</strong> é essencial para
+            comparar concessionárias de estados diferentes (o ICMS varia) e para
+            dimensionar projetos de energia solar, em que o que importa é o valor
+            da energia e do uso da rede — especialmente a{" "}
+            <strong>TUSD Fio B</strong>, usada na compensação da geração
+            distribuída.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
       </div>
     </>
   );

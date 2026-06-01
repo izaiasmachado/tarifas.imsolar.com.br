@@ -19,11 +19,36 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
 import { PageHeader } from "@/components/layout/page-header";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
 
 const FILTERS: FilterDef<FatorAjuste>[] = [
   { key: "concessionaria", label: "Concessionária" },
   { key: "subgrupo", label: "Subgrupo" },
   { key: "modalidade", label: "Modalidade" },
+];
+
+const FAQ: QA[] = [
+  {
+    q: "O que é o fator de ajuste da TE no Grupo A?",
+    a: "É a relação entre a Tarifa de Energia (TE) fora ponta e a TE na ponta. Como a energia na ponta é mais cara, para compensar 1 kWh consumido na ponta com geração feita fora ponta é preciso gerar mais do que 1 kWh — exatamente na proporção do fator de ajuste.",
+  },
+  {
+    q: "Para quem serve essa calculadora?",
+    a: "Para projetos de geração distribuída em clientes do Grupo A (média/alta tensão) com tarifação horária (modalidades azul e verde), onde o consumo e a geração ocorrem em postos com preços diferentes.",
+  },
+  {
+    q: "Como interpreto o resultado?",
+    a: "A 'geração ajustada para compensar a ponta' indica quanta energia fora ponta é necessária para zerar, em valor de TE, o consumo da ponta. Some a isso o consumo fora ponta para obter a geração total necessária.",
+  },
+  {
+    q: "Os valores incluem impostos?",
+    a: "Não. O cálculo usa a TE sem impostos da base da ANEEL. A compensação real também depende das regras da distribuidora e da Lei 14.300/2022.",
+  },
 ];
 
 interface FormValues {
@@ -131,10 +156,13 @@ export function FatorAjustePage() {
           "compensação ponta",
           "geração distribuída",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Fator de ajuste", path: "/fator-ajuste-grupo-a" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Fator de ajuste", path: "/fator-ajuste-grupo-a" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -280,6 +308,30 @@ export function FatorAjustePage() {
             </dl>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="O que é o fator de ajuste da TE">
+          <p>
+            No Grupo A com tarifação horária (modalidades azul e verde), a Tarifa
+            de Energia (TE) é mais cara no horário de <strong>ponta</strong> do
+            que <strong>fora ponta</strong>. Quando um cliente gera a própria
+            energia (geração distribuída) fora ponta para compensar o que
+            consumiu na ponta, a compensação não é de 1 para 1: como o kWh da
+            ponta vale mais, é preciso gerar uma quantidade maior fora ponta.
+          </p>
+          <p>
+            O <strong>fator de ajuste</strong> é justamente essa proporção
+            (TE&nbsp;fora&nbsp;ponta ÷ TE&nbsp;ponta). Esta calculadora aplica o
+            fator da concessionária escolhida ao seu consumo na ponta, mostrando
+            quanta geração fora ponta é necessária para compensá-lo e qual a
+            geração total para zerar a conta de energia.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
       </div>
     </>
   );
