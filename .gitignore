@@ -10,9 +10,9 @@ node_modules
 .pnp
 .pnp.js
 
-# Build output
-build
-dist
+# Build output (anchored to repo root so scripts/build/ is NOT ignored)
+/build
+/dist
 dist-ssr
 *.local
 
