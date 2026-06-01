@@ -20,6 +20,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Seo } from "@/components/seo";
+import { ShareButton } from "@/components/share-button";
 
 const tools = [
   {
@@ -67,23 +68,6 @@ const tools = [
 ];
 
 export function HomePage() {
-  const handleShare = async () => {
-    const shareData = {
-      title: SITE.name,
-      text: "Conheça as ferramentas de tarifas de energia da IM Solar!",
-      url: SITE.url,
-    };
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch {
-        /* usuário cancelou */
-      }
-    } else {
-      await navigator.clipboard?.writeText(SITE.url);
-    }
-  };
-
   return (
     <>
       <Seo
@@ -162,9 +146,7 @@ export function HomePage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button onClick={handleShare} variant="secondary">
-                <Share2 className="h-4 w-4" /> Compartilhar
-              </Button>
+              <ShareButton />
             </CardContent>
           </Card>
         </div>

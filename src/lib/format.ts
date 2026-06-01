@@ -47,7 +47,8 @@ export function formatDateLong(iso: string | null | undefined): string {
 
 /**
  * Formata um instante ISO completo (com fuso) como
- * "27 de maio de 2026 às 09:00", no horário de Brasília.
+ * "27 de maio de 2026 às 09:00". O dado é salvo em ISO 8601 (UTC); aqui o
+ * próprio navegador converte para o fuso horário local do usuário.
  */
 export function formatDateTimeLong(iso: string | null | undefined): string {
   if (!iso) return "—";
@@ -59,7 +60,6 @@ export function formatDateTimeLong(iso: string | null | undefined): string {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-    timeZone: "America/Sao_Paulo",
   }).format(date);
   // pt-BR rende "27 de maio de 2026, 09:00"; trocamos a vírgula por "às".
   return formatted.replace(", ", " às ");

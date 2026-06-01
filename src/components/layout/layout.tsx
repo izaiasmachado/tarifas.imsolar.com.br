@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
@@ -14,12 +15,14 @@ export function Layout() {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-dvh flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <TooltipProvider delayDuration={150}>
+      <div className="flex min-h-dvh flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </TooltipProvider>
   );
 }
