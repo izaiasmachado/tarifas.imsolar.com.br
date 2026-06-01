@@ -20,9 +20,31 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Seo, breadcrumbJsonLd } from "@/components/seo";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataSource } from "@/components/data-source";
+import { InfoHint } from "@/components/info-hint";
+import {
+  FaqBlock,
+  InfoSection,
+  faqJsonLd,
+  type QA,
+} from "@/components/info-section";
 
 /** Subgrupos de baixa tensão (Grupo B), monômios. */
 const GRUPO_B = ["B1", "B2", "B3", "B4"];
+
+const FAQ: QA[] = [
+  {
+    q: "O valor estimado é igual ao da minha conta?",
+    a: "Não exatamente. O simulador mostra apenas a parcela de energia sem impostos (TUSD + TE). A conta real inclui ICMS, PIS/COFINS, bandeira tarifária, iluminação pública e eventual taxa mínima, então será maior. Serve para comparar concessionárias e entender o peso da energia.",
+  },
+  {
+    q: "O que é Grupo B?",
+    a: "É o grupo de baixa tensão, que engloba a maioria das residências e pequenos comércios (subgrupos B1 a B4). Nele, a conta é cobrada apenas pelo consumo de energia (kWh), sem cobrança de demanda — diferente do Grupo A (alta tensão).",
+  },
+  {
+    q: "Onde vejo meu consumo em kWh?",
+    a: "Na sua conta de luz, normalmente em destaque, em kWh. Para uma estimativa mais estável ao longo do ano, some o consumo dos últimos 12 meses e divida por 12.",
+  },
+];
 
 interface FormValues {
   concessionaria: string;
@@ -88,10 +110,13 @@ export function SimuladorContaPage() {
           "TE",
           "ANEEL",
         ]}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Início", path: "/" },
-          { name: "Simulador de conta", path: "/simulador-conta" },
-        ])}
+        jsonLd={[
+          faqJsonLd(FAQ),
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Simulador de conta", path: "/simulador-conta" },
+          ]),
+        ]}
       />
 
       <PageHeader
@@ -194,16 +219,16 @@ export function SimuladorContaPage() {
               {[
                 {
                   label: "Tarifa total (sem impostos)",
-                  value: result
-                    ? `${formatBRL(result.tarifaKwh)}/kWh`
-                    : "—",
+                  value: result ? `${formatBRL(result.tarifaKwh)}/kWh` : "—",
                 },
                 {
                   label: "TUSD (uso da rede)",
+                  hint: "tusd" as const,
                   value: result ? formatBRL(result.tusd) : "—",
                 },
                 {
                   label: "TE (energia)",
+                  hint: "te" as const,
                   value: result ? formatBRL(result.te) : "—",
                 },
                 {
@@ -216,7 +241,10 @@ export function SimuladorContaPage() {
                   key={o.label}
                   className="flex items-center justify-between gap-4 py-3"
                 >
-                  <dt className="text-sm text-muted-foreground">{o.label}</dt>
+                  <dt className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    {o.label}
+                    {"hint" in o && o.hint && <InfoHint term={o.hint} />}
+                  </dt>
                   <dd
                     className={
                       o.highlight
@@ -241,7 +269,31 @@ export function SimuladorContaPage() {
         </Card>
       </div>
 
-      <div className="container pb-8">
+      <div className="container space-y-10 pb-12">
+        <InfoSection title="Como a conta de luz é formada">
+          <p>
+            A tarifa de energia (sem impostos) é a soma de dois componentes: a{" "}
+            <strong>TUSD</strong> (Tarifa de Uso do Sistema de Distribuição), que
+            paga o transporte da energia pela rede, e a <strong>TE</strong>{" "}
+            (Tarifa de Energia), que paga a energia em si. Multiplicando essa
+            tarifa pelo seu consumo em kWh, chega-se ao valor da energia antes
+            dos impostos.
+          </p>
+          <p>
+            A conta final que chega à sua casa é maior, porque inclui{" "}
+            <strong>ICMS, PIS e COFINS</strong>, a{" "}
+            <strong>bandeira tarifária</strong> do mês, a contribuição de
+            iluminação pública (CIP/COSIP) e, se o consumo for muito baixo, o
+            custo de disponibilidade (a “taxa mínima”). Este simulador mostra a
+            parcela de energia sem impostos, útil para comparar concessionárias
+            e dimensionar projetos.
+          </p>
+        </InfoSection>
+
+        <InfoSection title="Perguntas frequentes">
+          <FaqBlock items={FAQ} />
+        </InfoSection>
+
         <DataSource />
       </div>
     </>
