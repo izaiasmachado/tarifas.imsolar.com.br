@@ -3,7 +3,7 @@
 
 Saídas (em ``public/data/``):
   - ``tarifas.json``       Tarifas de aplicação sem impostos (TUSD, TE, TUSD Fio B).
-  - ``fator-ajuste.json``  Derivado: fator de ajuste da TE para o Grupo A.
+  - ``fator-ajuste.json``  Derivado: fator de ajuste para o Grupo A.
   - ``meta.json``          Metadados (data de atualização, vigência, fonte).
 
 Fonte: ANEEL — "Tarifas homologadas das distribuidoras de energia elétrica"
@@ -13,6 +13,9 @@ O script é tolerante a mudanças: descobre o recurso pelo ``package_show`` e
 permite ajustar o mapa de colunas no topo do arquivo caso a ANEEL renomeie
 campos. Use ``--dump-schema`` na primeira execução para inspecionar as colunas
 reais retornadas pela API.
+
+O download mostra uma barra de progresso e cada fase reporta o tempo decorrido
+(use ``--no-progress`` para desativar a barra, ex.: em logs de CI).
 
 Exemplos:
     python fetch_tarifas.py                  # baixa da ANEEL e escreve os JSONs
@@ -28,9 +31,10 @@ import csv
 import io
 import json
 import sys
+import time
 from datetime import date, datetime
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Iterator
 
 try:
     import requests
@@ -79,8 +83,8 @@ POSTO_PONTA = "Ponta"
 POSTO_FORA_PONTA = "Fora ponta"
 DETALHE_PADRAO = "Não se aplica"
 UNIDADE_ENERGIA = "MWh"
-# Classe padrão (não-descontada). Classes como "Rural" têm TE reduzida e não
-# entram no fator de ajuste de referência.
+# Classe padrão (não-descontada). Classes como "Rural" têm tarifa reduzida e
+# não entram no fator de ajuste de referência.
 CLASSE_PADRAO = "Não se aplica"
 MODALIDADES_BINOMIAS = {"Azul", "Verde"}
 
@@ -99,6 +103,86 @@ def log(msg: str) -> None:
 def _norm(name: str) -> str:
     """Normaliza um nome de coluna para comparação tolerante."""
     return "".join(ch for ch in name.lower() if ch.isalnum())
+
+
+def _human_bytes(num: float) -> str:
+    """Formata uma quantidade de bytes de forma legível (B, KB, MB, GB)."""
+    value = float(num)
+    for unit in ("B", "KB", "MB", "GB"):
+        if value < 1024 or unit == "GB":
+            return f"{int(value)} B" if unit == "B" else f"{value:.1f} {unit}"
+        value /= 1024
+    return f"{value:.1f} GB"
+
+
+def _human_duration(seconds: float) -> str:
+    """Formata uma duração de forma legível (s, m, h)."""
+    if seconds < 60:
+        return f"{seconds:.1f}s"
+    minutes, secs = divmod(int(seconds), 60)
+    if minutes < 60:
+        return f"{minutes}m{secs:02d}s"
+    hours, minutes = divmod(minutes, 60)
+    return f"{hours}h{minutes:02d}m{secs:02d}s"
+
+
+def _render_progress(
+    label: str, done: int, total: int, elapsed: float, final: bool = False
+) -> None:
+    """Desenha uma linha de progresso (sobrescrevendo a anterior) no stderr."""
+    speed = done / elapsed if elapsed > 0 else 0.0
+    if total > 0:
+        frac = min(1.0, done / total)
+        width = 24
+        filled = int(width * frac)
+        bar = "█" * filled + "░" * (width - filled)
+        eta = (total - done) / speed if speed > 0 and not final else 0
+        tail = "" if final else f"  ETA {_human_duration(eta)}"
+        msg = (
+            f"[aneel] {label} [{bar}] {frac * 100:4.0f}%  "
+            f"{_human_bytes(done)}/{_human_bytes(total)}  "
+            f"{_human_bytes(speed)}/s  {_human_duration(elapsed)}{tail}"
+        )
+    else:
+        # Tamanho total desconhecido: mostra bytes, velocidade e tempo.
+        msg = (
+            f"[aneel] {label} {_human_bytes(done)}  "
+            f"{_human_bytes(speed)}/s  {_human_duration(elapsed)}"
+        )
+    end = "\n" if final else ""
+    # \r volta ao início da linha; \x1b[K limpa o resto (linhas que encurtam).
+    print(f"\r{msg}\x1b[K", end=end, file=sys.stderr, flush=True)
+
+
+def _drain_with_progress(
+    chunks: Iterator[bytes],
+    total: int,
+    label: str,
+    show_progress: bool,
+    min_interval: float = 0.1,
+) -> tuple[bytes, float]:
+    """Consome um iterador de chunks, acumulando bytes e mostrando progresso.
+
+    Função pura em relação à rede: aceita qualquer iterável de ``bytes``, o que
+    a torna testável sem fazer requisições.
+    """
+    buffer = bytearray()
+    done = 0
+    start = time.monotonic()
+    last_render = 0.0
+    for chunk in chunks:
+        if not chunk:
+            continue
+        buffer.extend(chunk)
+        done += len(chunk)
+        now = time.monotonic()
+        if show_progress and (now - start) - last_render >= min_interval:
+            _render_progress(label, done, total, now - start)
+            last_render = (now - start)
+    elapsed = time.monotonic() - start
+    if show_progress:
+        _render_progress(label, done, total or done, elapsed, final=True)
+    return bytes(buffer), elapsed
 
 
 def resolve_columns(fieldnames: Iterable[str]) -> dict[str, str]:
@@ -214,13 +298,25 @@ def discover_csv_url(timeout: int = 60) -> str:
     )
 
 
-def download_csv_text(url: str, timeout: int = 180) -> str:
-    """Baixa o CSV e devolve o texto decodificado (tenta utf-8 e latin-1)."""
+def download_csv_text(
+    url: str, timeout: int = 300, show_progress: bool = True
+) -> str:
+    """Baixa o CSV (em streaming, com barra) e devolve o texto decodificado."""
     _require_requests()
     log(f"baixando {url}")
-    resp = requests.get(url, timeout=timeout)
-    resp.raise_for_status()
-    raw = resp.content
+    with requests.get(url, timeout=timeout, stream=True) as resp:
+        resp.raise_for_status()
+        total = int(resp.headers.get("Content-Length") or 0)
+        raw, elapsed = _drain_with_progress(
+            resp.iter_content(chunk_size=65536),
+            total,
+            "download",
+            show_progress,
+        )
+    log(
+        f"download concluído: {_human_bytes(len(raw))} "
+        f"em {_human_duration(elapsed)}"
+    )
     for enc in ("utf-8-sig", "utf-8", "latin-1"):
         try:
             return raw.decode(enc)
@@ -285,10 +381,9 @@ def derive_fator_ajuste(tarifas: list[dict[str, str]]) -> list[dict[str, str]]:
     IMPORTANTE — qual coluna: na base da ANEEL é a coluna **TUSD** que carrega
     o diferencial ponta / fora-ponta para o Grupo A (a coluna TE costuma vir
     achatada entre os postos nesta base). Os campos de saída mantêm os nomes
-    históricos `totalTE*` apenas por compatibilidade com o contrato de dados do
-    site. Reproduzir a base anterior a partir de TE dava 0 acertos; a partir de
-    TUSD reproduz ~95% (o restante é divergência de vintage entre os JSONs
-    legados). Ver `test_derive.py`.
+    históricos ``totalTE*`` apenas por compatibilidade com o contrato de dados
+    do site. Reproduzir a base anterior a partir de TE dava 0 acertos; a partir
+    de TUSD reproduz os registros diferenciados. Ver ``test_derive.py``.
 
     A base traz, para a mesma chave/posto, linhas duplicadas; tomamos o MAIOR
     valor por posto (tarifa de referência); variações descontadas, como a
@@ -387,6 +482,8 @@ def _count(data) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    run_start = time.monotonic()
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--from-csv",
@@ -416,22 +513,41 @@ def main(argv: list[str] | None = None) -> int:
         help="Executa sem escrever arquivos.",
     )
     parser.add_argument(
+        "--no-progress",
+        action="store_true",
+        help="Não desenha a barra de progresso do download.",
+    )
+    parser.add_argument(
         "--today",
         default=date.today().isoformat(),
         help="Data ISO usada como fallback de updatedAt.",
     )
     args = parser.parse_args(argv)
 
+    # Barra só faz sentido em terminal interativo (evita poluir logs de CI).
+    show_progress = (
+        not args.no_progress
+        and not args.from_csv
+        and sys.stderr.isatty()
+    )
+
+    # 1. Obter o texto do CSV.
     if args.from_csv:
         log(f"lendo CSV local {args.from_csv}")
         text = args.from_csv.read_text(encoding="utf-8", errors="replace")
     else:
-        text = download_csv_text(discover_csv_url())
+        text = download_csv_text(discover_csv_url(), show_progress=show_progress)
 
+    # 2. Ler e processar (com tempos por fase).
+    t_parse = time.monotonic()
     rows, fieldnames = read_rows(text)
     if not fieldnames:
         raise SystemExit("CSV sem cabeçalho legível.")
-    log(f"{len(rows)} linhas lidas; {len(fieldnames)} colunas")
+    log(
+        f"{len(rows)} linhas lidas em "
+        f"{_human_duration(time.monotonic() - t_parse)}; "
+        f"{len(fieldnames)} colunas"
+    )
 
     if args.dump_schema:
         print("\n".join(sorted(fieldnames)))
@@ -440,6 +556,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.limit:
         rows = rows[: args.limit]
 
+    t_proc = time.monotonic()
     cols = resolve_columns(fieldnames)
     tarifas = build_tarifas(rows, cols)
     if not tarifas:
@@ -458,14 +575,18 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     log(
+        f"processado em {_human_duration(time.monotonic() - t_proc)}: "
         f"tarifas={len(tarifas)} fator_ajuste={len(fator)} "
         f"updatedAt={meta['updatedAt']}"
     )
 
+    # 3. Escrever saídas.
     out = args.output_dir
     write_json(out / "tarifas.json", tarifas, args.dry_run)
     write_json(out / "fator-ajuste.json", fator, args.dry_run)
     write_json(out / "meta.json", meta, args.dry_run)
+
+    log(f"concluído em {_human_duration(time.monotonic() - run_start)}")
     return 0
 
 

@@ -32,7 +32,15 @@ python3 scripts/aneel/fetch_tarifas.py --from-csv tarifas.csv
 
 # Teste rápido com poucas linhas, sem escrever arquivos
 python3 scripts/aneel/fetch_tarifas.py --limit 5000 --dry-run
+
+# Sem barra de progresso (ex.: logs de CI)
+python3 scripts/aneel/fetch_tarifas.py --no-progress
 ```
+
+O download exibe uma **barra de progresso** com percentual, tamanho,
+velocidade, tempo decorrido e ETA; cada fase (download, leitura, processamento)
+reporta o tempo gasto e, ao final, o tempo total. A barra é desativada
+automaticamente quando a saída não é um terminal (CI) ou com `--no-progress`.
 
 ## Como funciona
 
