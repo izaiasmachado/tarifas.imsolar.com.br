@@ -74,6 +74,17 @@ export function SemImpostosPage() {
         title="Tarifas de energia sem impostos"
         description="Tabela com as tarifas de energia elétrica sem impostos (TUSD, TE e TUSD Fio B) por concessionária, subgrupo e modalidade, com dados da ANEEL. Filtre e ordene livremente."
         path="/sem-impostos"
+        keywords={[
+          "tarifa de energia sem impostos",
+          "TUSD",
+          "TE",
+          "TUSD Fio B",
+          "tarifa por concessionária",
+          "tarifa ANEEL",
+          "tabela de tarifas",
+          "grupo A",
+          "grupo B",
+        ]}
         jsonLd={breadcrumbJsonLd([
           { name: "Início", path: "/" },
           { name: "Tarifas sem impostos", path: "/sem-impostos" },
