@@ -58,6 +58,16 @@ export function DuvidasPage() {
         title="Dúvidas frequentes sobre tarifas de energia"
         description="Perguntas frequentes sobre tarifas de energia sem impostos, TUSD, TE, TUSD Fio B e o fator de ajuste da TE no Grupo A. Entenda os conceitos por trás das ferramentas."
         path="/duvidas"
+        keywords={[
+          "o que é TUSD",
+          "o que é TE",
+          "TUSD Fio B",
+          "fator de ajuste",
+          "tarifa sem impostos",
+          "Lei 14.300",
+          "geração distribuída",
+          "dúvidas tarifa de energia",
+        ]}
         jsonLd={[
           faqJsonLd,
           breadcrumbJsonLd([

@@ -100,7 +100,6 @@ export function ReportarPage() {
       <PageHeader
         title="Reportar erro ou sugestão"
         description="Sua contribuição ajuda a manter as tarifas corretas e as ferramentas úteis para toda a comunidade."
-        breadcrumbLabel="Reportar erro"
       />
 
       <div className="container max-w-2xl py-8">

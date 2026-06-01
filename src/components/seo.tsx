@@ -7,6 +7,8 @@ interface SeoProps {
   description: string;
   /** Caminho da rota (ex.: "/sem-impostos"). Usado em canonical e og:url. */
   path: string;
+  /** Palavras-chave específicas da página (reforçam a indexação individual). */
+  keywords?: string[];
   /** Dados estruturados extras (objeto JSON-LD ou lista deles). */
   jsonLd?: object | object[];
   /** Se true, não anexa " | Tarifas IM Solar" ao título. */
@@ -18,6 +20,7 @@ export function Seo({
   title,
   description,
   path,
+  keywords,
   jsonLd,
   rawTitle = false,
 }: SeoProps) {
@@ -33,6 +36,9 @@ export function Seo({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords && keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(", ")} />
+      )}
       <link rel="canonical" href={canonical} />
 
       <meta property="og:type" content="website" />

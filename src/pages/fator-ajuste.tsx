@@ -120,6 +120,17 @@ export function FatorAjustePage() {
         title="Calculadora de fator de ajuste TE — Grupo A"
         description="Calcule a geração fora ponta necessária para compensar o consumo na ponta em unidades do Grupo A com tarifação binômia (azul/verde), usando o fator de ajuste da TE por concessionária."
         path="/fator-ajuste-grupo-a"
+        keywords={[
+          "fator de ajuste",
+          "fator de ajuste TE",
+          "grupo A",
+          "tarifação binômia",
+          "tarifa azul",
+          "tarifa verde",
+          "geração fora ponta",
+          "compensação ponta",
+          "geração distribuída",
+        ]}
         jsonLd={breadcrumbJsonLd([
           { name: "Início", path: "/" },
           { name: "Fator de ajuste", path: "/fator-ajuste-grupo-a" },
@@ -129,7 +140,7 @@ export function FatorAjustePage() {
       <PageHeader
         title="Calculadora de fator de ajuste TE — Grupo A"
         description="Para clientes do Grupo A com tarifação binômia, calcule quanta energia fora ponta é necessário gerar para compensar o consumo na hora ponta."
-        breadcrumbLabel="Fator de ajuste"
+        breadcrumb={[{ label: "Fator de ajuste" }]}
       />
 
       <div className="container grid gap-6 py-8 lg:grid-cols-2">
