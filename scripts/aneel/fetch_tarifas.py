@@ -32,7 +32,7 @@ import io
 import json
 import sys
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Iterable, Iterator
 
@@ -449,6 +449,11 @@ def build_meta(
                 inicio_vigencia = vigs[-1]
     return {
         "updatedAt": data_geracao or today_iso,
+        # Momento exato em que este arquivo foi gerado (UTC, ISO 8601). O site
+        # formata em pt-BR no fuso de São Paulo, exibindo data e hora.
+        "generatedAt": datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat(),
         "vigenciaInicio": inicio_vigencia,
         "fonte": (
             "ANEEL — Tarifas homologadas das distribuidoras de energia "

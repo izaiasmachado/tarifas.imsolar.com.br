@@ -29,6 +29,11 @@ export interface FatorAjuste {
 export interface DatasetMeta {
   /** Data ISO (YYYY-MM-DD) em que os dados foram gerados/atualizados. */
   updatedAt: string;
+  /**
+   * Momento exato da geração (ISO 8601 com fuso, ex.: 2026-05-27T12:00:00+00:00).
+   * Opcional: dados gerados antes desta versão do script não têm o campo.
+   */
+  generatedAt?: string;
   /** Início da vigência das tarifas, se conhecido. */
   vigenciaInicio: string | null;
   fonte: string;

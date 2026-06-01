@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Calculator, Share2, Table2 } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Calculator,
+  PiggyBank,
+  Receipt,
+  Scale,
+  Share2,
+  Table2,
+} from "lucide-react";
 
 import { SITE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
@@ -11,7 +20,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Seo } from "@/components/seo";
-import { LastUpdated } from "@/components/last-updated";
 
 const tools = [
   {
@@ -22,9 +30,37 @@ const tools = [
       "Tabela com as tarifas de energia elétrica sem impostos, por concessionária, com filtros por subgrupo e modalidade.",
   },
   {
+    to: "/ranking",
+    icon: BarChart3,
+    title: "Ranking de tarifas",
+    description:
+      "As concessionárias com as tarifas mais altas e mais baixas do Brasil, por subgrupo e componente tarifário.",
+  },
+  {
+    to: "/comparar",
+    icon: Scale,
+    title: "Comparador de concessionárias",
+    description:
+      "Compare TUSD, TE e TUSD Fio B de duas ou mais concessionárias lado a lado.",
+  },
+  {
+    to: "/simulador-conta",
+    icon: Receipt,
+    title: "Simulador de conta de luz",
+    description:
+      "Estime o custo de energia (sem impostos) a partir do consumo mensal e da concessionária, para o Grupo B.",
+  },
+  {
+    to: "/economia-solar",
+    icon: PiggyBank,
+    title: "Economia com energia solar",
+    description:
+      "Estime a economia mensal e anual e o tempo de retorno (payback) de um sistema solar.",
+  },
+  {
     to: "/fator-ajuste-grupo-a",
     icon: Calculator,
-    title: "Calculadora de fator de ajuste TE — Grupo A",
+    title: "Fator de ajuste TE — Grupo A",
     description:
       "Calcule a geração fora ponta necessária para compensar o consumo na ponta, em clientes Grupo A com tarifação binômia.",
   },
@@ -61,7 +97,6 @@ export function HomePage() {
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-20 md:py-28">
           <div className="mx-auto max-w-3xl text-center">
-            <LastUpdated className="mb-6" />
             <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
               Facilite seus projetos de{" "}
               <span className="text-primary">energia elétrica</span>

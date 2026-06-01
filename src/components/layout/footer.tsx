@@ -21,6 +21,14 @@ export function Footer() {
             IM Solar
           </a>
           <a
+            href={SITE.dataSourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-foreground"
+          >
+            Fonte: ANEEL
+          </a>
+          <a
             href={SITE.repo}
             target="_blank"
             rel="noopener noreferrer"

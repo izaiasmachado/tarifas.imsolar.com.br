@@ -44,3 +44,23 @@ export function formatDateLong(iso: string | null | undefined): string {
     year: "numeric",
   }).format(date);
 }
+
+/**
+ * Formata um instante ISO completo (com fuso) como
+ * "27 de maio de 2026 às 09:00", no horário de Brasília.
+ */
+export function formatDateTimeLong(iso: string | null | undefined): string {
+  if (!iso) return "—";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "—";
+  const formatted = new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Sao_Paulo",
+  }).format(date);
+  // pt-BR rende "27 de maio de 2026, 09:00"; trocamos a vírgula por "às".
+  return formatted.replace(", ", " às ");
+}
