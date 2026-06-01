@@ -3,10 +3,14 @@ import {
   ArrowRight,
   BarChart3,
   Calculator,
+  Flag,
+  Clock,
   PiggyBank,
+  Plug,
   Receipt,
   Scale,
   Share2,
+  Sun,
   Table2,
 } from "lucide-react";
 
@@ -57,6 +61,34 @@ const tools = [
     title: "Economia com energia solar",
     description:
       "Estime a economia mensal e anual e o tempo de retorno (payback) de um sistema solar.",
+  },
+  {
+    to: "/dimensionar-solar",
+    icon: Sun,
+    title: "Dimensionamento de sistema solar",
+    description:
+      "Calcule a potência (kWp), o número de painéis, a área de telhado e o custo a partir do seu consumo e região.",
+  },
+  {
+    to: "/consumo-aparelhos",
+    icon: Plug,
+    title: "Consumo de aparelhos",
+    description:
+      "Descubra quanto cada eletrodoméstico consome por mês em kWh e o impacto na conta de luz.",
+  },
+  {
+    to: "/tarifa-branca",
+    icon: Clock,
+    title: "Tarifa Branca vs Convencional",
+    description:
+      "Veja se a Tarifa Branca vale a pena para o seu perfil de consumo ao longo do dia.",
+  },
+  {
+    to: "/bandeiras",
+    icon: Flag,
+    title: "Bandeiras tarifárias",
+    description:
+      "Calcule quanto a bandeira verde, amarela ou vermelha adiciona à sua conta de luz.",
   },
   {
     to: "/fator-ajuste-grupo-a",
